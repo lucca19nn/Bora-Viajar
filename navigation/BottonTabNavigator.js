@@ -1,7 +1,7 @@
 import React from "react"; 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"; 
 import Home from "../pages/Home";
-import Filtro from "../pages/pesquisa/Filtro"; 
+import Filtro from "../pages/Filtro"; 
 import Icon from "react-native-vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator(); 
@@ -25,6 +25,7 @@ export default function TabNavigation() {
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="location-sharp" color={color} size={size} />
                     ),
+                    headerShown: false,
                 }}
             />
         </Tab.Navigator>

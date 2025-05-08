@@ -30,7 +30,12 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Tab}
-          options={{ headerShown: false }}
+          options={{ headerShown: false}}
+        />
+        <Stack.Screen
+          name="Filtro"
+          component={Tab}
+          options={{ headerShown: false}}
         />
       </Stack.Navigator>
 

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function Post({ post }) {
+    const [posts, setPost] = useState(null);
+    const [tags, setTags] = useState(null);
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Image
                     style={styles.profileImage}
-                    source={{ uri: post ? post.photo : "photo"}} 
+                    source={{ uri: post ? post.photo : "photo" }}
                 />
                 <View style={styles.userDetails}>
                     <Text style={styles.userName}>{post ? post.name : "name"}</Text>
@@ -16,22 +19,24 @@ export default function Post({ post }) {
                 </View>
             </View>
             <Text style={styles.postContent}>
-            {post ? post.description : "description"}
+                {post ? post.description : "description"}
             </Text>
-
+            {tags && tags.tag ? (
             <TouchableOpacity style={styles.alertButton}>
                 <Text style={styles.alertButtonText}>{post ? post.tag : "tag"}</Text>
             </TouchableOpacity>
-
+                            ) : (
+                                <Text></Text>
+                            )}
             <View style={styles.imagesContainer}>
-                <Image
-                    style={styles.postImage}
-                    source={{ uri: post ? post.image1 : "image1"}}
-                />
-                <Image
-                    style={styles.postImage}
-                    source={{ uri: post ? post.image2 : "image2"}}
-                />
+                {posts && posts.image ? (
+                        <Image
+                            style={styles.postImage}
+                            source={{ uri: post ? post.image : "image" }}
+                        />
+                ) : (
+                    <Text></Text>
+                )}
             </View>
 
             <View style={styles.iconContainer}>

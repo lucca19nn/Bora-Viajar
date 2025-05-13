@@ -1,5 +1,5 @@
 import React from "react";
-import { View, SafeAreaView, FlatList, ScrollView, Dimensions } from "react-native";
+import { View, SafeAreaView, FlatList, Dimensions } from "react-native";
 import Post from "../components/Post";
 
 export default function Home() {
@@ -19,7 +19,6 @@ export default function Home() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollContainer}>
                 <FlatList
                     style={styles.verticalList}
                     data={posts}
@@ -32,7 +31,6 @@ export default function Home() {
                         </View>
                     )}
                 />
-            </ScrollView>
         </SafeAreaView>
     );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+const { width } = Dimensions.get('window');
 
 export default function Post({ post }) {
     return (
@@ -44,16 +45,15 @@ export default function Post({ post }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '188%',
+        width: width * 0.95, // Usa 95% da largura da tela
         backgroundColor: '#fff',
-        borderRadius: 8,
-        padding: 10,
-        margin: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
+        borderRadius: 12,
+        padding: 15,
+        marginVertical: 10, // Espaçamento vertical entre os posts
+        marginHorizontal: width * 0.025, // Centraliza horizontalmente
         elevation: 3,
+        borderWidth: 1,
+        borderColor: '#ddd',
     },
     header: {
         flexDirection: 'row',

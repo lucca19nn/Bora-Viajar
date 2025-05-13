@@ -29,7 +29,9 @@ export default function TabNavigation() {
             ),
             headerStyle: {
                 backgroundColor: "#ffffff",
-                height: 100,
+                height: 110,
+                borderBottomWidth: 3,
+                borderBottomColor: "#25C0C0",
             },
             headerTitleAlign: "center",
             headerTintColor: "#f7f7f7",
@@ -40,7 +42,7 @@ export default function TabNavigation() {
             },
             tabBarShowLabel: false,
             tabBarStyle: {
-                backgroundColor: '#ffffff', // Cor de fundo visível
+                backgroundColor: '#25C0C0', // Cor de fundo visível
                 position: 'fixed', // Fixar o tab bar na parte inferior
                 bottom: 0, // Garantir que ele esteja no final da tela
                 left: 0,
@@ -49,6 +51,8 @@ export default function TabNavigation() {
                 zIndex: 10, // Garantir que esteja acima de outros elementos
                 borderTopWidth: 1, // Linha superior para separação
                 borderTopColor: '#e0e0e0', // Cor da linha superior
+                borderTopLeftRadius: 60, // Bordas arredondadas
+                borderTopRightRadius: 60, // Bordas arredondadas
             },
             tabBarLabelStyle: {
                 fontSize: 15,
@@ -76,7 +80,7 @@ export default function TabNavigation() {
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="location-sharp" color={color} size={size} />
                     ),
-                    headerShown: false,
+                    headerShown: true,
                 }}
             />
         </Tab.Navigator>

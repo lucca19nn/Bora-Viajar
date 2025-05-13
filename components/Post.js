@@ -11,10 +11,10 @@ export default function Post({ post }) {
             <View style={styles.header}>
                 <Image
                     style={styles.profileImage}
-                    source={{ uri: post ? post.photo : "photo" }}
+                    source={{ uri: post?.photo}}
                 />
                 <View style={styles.userDetails}>
-                    <Text style={styles.userName}>{post ? post.name : "name"}</Text>
+                    <Text style={styles.userName}>{post?.name}</Text>
                     <Text style={styles.userHandle}>@username</Text>
                 </View>
             </View>
@@ -23,7 +23,7 @@ export default function Post({ post }) {
             </Text>
             {tags && tags.tag ? (
             <TouchableOpacity style={styles.alertButton}>
-                <Text style={styles.alertButtonText}>{post ? post.tag : "tag"}</Text>
+                <Text style={styles.alertButtonText}>{post?.tag}</Text>
             </TouchableOpacity>
                             ) : (
                                 <Text></Text>
@@ -32,7 +32,7 @@ export default function Post({ post }) {
                 {posts && posts.image ? (
                         <Image
                             style={styles.postImage}
-                            source={{ uri: post ? post.image : "image" }}
+                            source={{ uri: post?.image }}
                         />
                 ) : (
                     <Text></Text>

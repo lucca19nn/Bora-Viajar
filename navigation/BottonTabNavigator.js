@@ -30,7 +30,7 @@ export default function TabNavigation() {
             headerStyle: {
                 backgroundColor: "#ffffff",
                 height: 110,
-                borderBottomWidth: 3,
+                borderBottomWidth: 2,
                 borderBottomColor: "#25C0C0",
             },
             headerTitleAlign: "center",

@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Filtro from "../pages/Filtro"; 
 import Icon from "react-native-vector-icons/Ionicons";
 
+
 const Tab = createBottomTabNavigator(); 
 
 export default function TabNavigation() {

@@ -93,39 +93,41 @@ export default function Filtro() {
   ];
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Top destinos</Text>
-      <FlatList
-        data={destinos}
-        renderItem={({ item }) => (
-          <Card
-            title={item.title}
-            description={item.subtitle}
-            image={item.image}
+    <FlatList
+      data={noticias} 
+      ListHeaderComponent={
+        <>
+          <Text style={styles.title}>Principais Noticias</Text>
+          <FlatList
+            data={destinos}
+            renderItem={({ item }) => (
+              <Card
+                title={item.title}
+                description={item.subtitle}
+                image={item.image}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 10 }}
           />
-        )}
-        keyExtractor={(item) => item.id}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 10 }}
-        onPress={() => navigation.navigate(item.navigateTo)}
-      />
-      <Text style={styles.title}>Principais Notícias</Text>
-      <FlatList
-        data={noticias}
-        renderItem={({ item }) => (
-          <CardFiltro
-            title={item.title}
-            description={item.subtitle}
-            image={item.image}
-            onPress={() => navigation.navigate(item.navigateTo)}
-          />
-        )}
-        keyExtractor={(item) => item.id}
-        numColumns={1}
-        nestedScrollEnabled={true}
-      />
-    </ScrollView>
+          <Text style={styles.title}>Top destinos</Text>
+        </>
+      }
+      renderItem={({ item }) => (
+        <CardFiltro
+          title={item.title}
+          description={item.subtitle}
+          image={item.image}
+          onPress={() => navigation.navigate(item.navigateTo)}
+        />
+      )}
+      keyExtractor={(item) => item.id}
+      numColumns={1}
+      nestedScrollEnabled={true}
+      contentContainerStyle={{ paddingBottom: 20 }}
+    />
   );
 }
 

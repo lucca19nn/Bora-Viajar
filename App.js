@@ -8,6 +8,9 @@ import Tab from "./navigation/BottonTabNavigator";
 import Filtro from "./pages/Filtro";
 import Sul from "./pages/pesquisa/regioes/Sul";
 import Centro from "./pages/pesquisa/regioes/Centro";
+import Norte from "./pages/pesquisa/regioes/Norte";
+import Nordeste from "./pages/pesquisa/regioes/Nordeste";
+import Sudeste from "./pages/pesquisa/regioes/Sudeste";
 
 const Stack = createStackNavigator();
 
@@ -49,6 +52,21 @@ export default function App() {
           name="Centro"
           component={Centro}
           options={{ headerShown: false, title: "Centro" }}
+        />
+        <Stack.Screen
+          name="Norte"
+          component={Norte}
+          options={{ headerShown: false, title: "Norte" }}
+        />
+        <Stack.Screen
+          name="Nordeste"
+          component={Nordeste}
+          options={{ headerShown: false, title: "Nordeste" }}
+        />
+        <Stack.Screen
+          name="Sudeste"
+          component={Sudeste}
+          options={{ headerShown: false, title: "Sudeste" }}
         />
       </Stack.Navigator>
 

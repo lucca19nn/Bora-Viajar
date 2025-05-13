@@ -15,11 +15,12 @@ const Card = ({ title, description, image, onPress }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: "47%",
-        height: 80, 
+        width: 200,
+        height: 200, 
         backgroundColor: "#00bcd4",
         borderRadius: 10,
-        margin: 8,
+        marginVertical: 8,
+        marginHorizontal: 8, 
         overflow: "hidden",
         alignItems: "center",
     },

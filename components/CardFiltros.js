@@ -25,7 +25,7 @@ const CardFiltro = ({ title, description, image, onPress }) => {
 const styles = StyleSheet.create({
     card: {
         width: "100%", 
-        height: 150, 
+        height: 150,
         borderRadius: 10,
         marginVertical: 8, 
         overflow: "hidden",

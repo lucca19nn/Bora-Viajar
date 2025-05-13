@@ -1,7 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from "react-native";
-
-const { width } = Dimensions.get("window"); 
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 const Card = ({ title, description, image, onPress }) => {
     return (
@@ -17,21 +15,21 @@ const Card = ({ title, description, image, onPress }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: "46%",
-        height: 90,
+        width: "47%",
+        height: 80, 
         backgroundColor: "#00bcd4",
         borderRadius: 10,
         margin: 8,
         overflow: "hidden",
-        alignItems: "center", 
+        alignItems: "center",
     },
     image: {
-        width: "100%", 
-        height: 100, 
+        width: "100%",
+        height: 100,
     },
     textContainer: {
         padding: 10,
-        alignItems: "center", 
+        alignItems: "center",
     },
     title: {
         fontSize: 18,

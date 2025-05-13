@@ -6,6 +6,7 @@ import Filtro from "../pages/Filtro";
 import Icon from "react-native-vector-icons/Ionicons";
 import logobora from "../assets/logobora.png";
 
+
 const Tab = createBottomTabNavigator(); 
 
 export default function TabNavigation() {

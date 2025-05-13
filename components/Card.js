@@ -15,7 +15,7 @@ const Card = ({ title, description, image, onPress }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: 200,
+        width: 150,
         height: 200, 
         backgroundColor: "#00bcd4",
         borderRadius: 10,

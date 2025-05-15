@@ -11,6 +11,7 @@ import Centro from "./pages/pesquisa/regioes/Centro";
 import Norte from "./pages/pesquisa/regioes/Norte";
 import Nordeste from "./pages/pesquisa/regioes/Nordeste";
 import Sudeste from "./pages/pesquisa/regioes/Sudeste";
+import Sobre from "./pages/Sobre";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,11 @@ export default function App() {
           name="Filtro"
           component={Filtro}
           options={{ headerShown: false, title: "Filtro" }}
+        />
+        <Stack.Screen
+          name="Sobre nós"
+          component={Sobre}
+          options={{ headerShown: false, title: "Sobre nós" }}
         />
         <Stack.Screen
           name="Sul"

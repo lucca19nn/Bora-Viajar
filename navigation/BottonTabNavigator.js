@@ -1,15 +1,21 @@
 import React from "react"; 
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"; 
 import Home from "../pages/Home";
 import Filtro from "../pages/Filtro"; 
 import Icon from "react-native-vector-icons/Ionicons";
 import logobora from "../assets/logobora.png";
-
+import { useNavigation } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator(); 
 
 export default function TabNavigation() {
+    const navigation = useNavigation();
+
+    const handlePress = () => {
+        navigation.navigate('Sobre'); 
+      };
+
     return (
         <Tab.Navigator
         initialRouteName='Home'
@@ -19,13 +25,15 @@ export default function TabNavigation() {
                 <Image
                     source={logobora}
                     style={{ width: 150, height: 150, alignItems: "center", resizeMode: "contain" }}
-                />
+                    />
             ),
             headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Sobre')}>
                 <Image
                     source={{ uri: "https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" }} 
                     style={{ width: 60, height: 60, resizeMode: "contain" }}
                 />
+            </TouchableOpacity>
             ),
             headerStyle: {
                 backgroundColor: "#ffffff",

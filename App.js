@@ -45,9 +45,9 @@ export default function App() {
           options={{ headerShown: false, title: "Filtro" }}
         />
         <Stack.Screen
-          name="Sobre nós"
+          name="Sobre"
           component={Sobre}
-          options={{ headerShown: false, title: "Sobre nós" }}
+          options={{ headerShown: false, title: "Sobre" }}
         />
         <Stack.Screen
           name="Sul"

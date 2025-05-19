@@ -17,7 +17,7 @@ const estados = [
         nome: "Paraná",
         capital: "Curitiba",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/curitiba-parana-capa2019-01.jpg",
+            "https://www.farejaviagens.com.br/wp-content/uploads/2024/07/Passeio-Publico-Curitiba-Foto-Prefeitura-de-Curitiba.jpg",
         descricao:
             "O Paraná é conhecido pelas Cataratas do Iguaçu, uma das maiores quedas d'água do mundo, além de belas cidades como Curitiba e paisagens naturais impressionantes.",
         pontos: [
@@ -25,19 +25,19 @@ const estados = [
                 id: "pr-1",
                 titulo: "Cataratas do Iguaçu",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/cataratas-iguacu-parana-capa2019-01.jpg",
+                    "https://www.cnnbrasil.com.br/viagemegastronomia/wp-content/uploads/sites/5/2021/05/cataratas.jpg?w=1200&h=900&crop=1",
             },
             {
                 id: "pr-2",
                 titulo: "Jardim Botânico de Curitiba",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/jardim-botanico-curitiba-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl6Qzn7Ysncry8WpXc6GVtEe_S2EgPFtdVYg&s",
             },
             {
                 id: "pr-3",
                 titulo: "Ilha do Mel",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/ilha-do-mel-parana-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ8Sb2TS5QpcddKPM4bePTub6NU6ID90YhFw&s",
             },
         ],
     },
@@ -46,7 +46,7 @@ const estados = [
         nome: "Santa Catarina",
         capital: "Florianópolis",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/florianopolis-santa-catarina-capa2019-01.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/0/09/Morro_da_Cruz%2C_Florian%C3%B3polis_-_SC%2C_Brazil_-_panoramio_%28cropped%29.jpg",
         descricao:
             "Santa Catarina é famosa por suas belas praias, cidades históricas e festas tradicionais. Florianópolis, a capital, é conhecida como a Ilha da Magia.",
         pontos: [
@@ -54,19 +54,19 @@ const estados = [
                 id: "sc-1",
                 titulo: "Praia de Jurerê",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/jurere-florianopolis-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQRyrGBQHph1dH66EK-vzRj0DB5b2MO7IxPg&s",
             },
             {
                 id: "sc-2",
                 titulo: "Beto Carrero World",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/beto-carrero-world-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2ajdyI0iVScd5PrJxWDGtU1c1AnHUfahx-A&s",
             },
             {
                 id: "sc-3",
                 titulo: "Serra do Rio do Rastro",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/serra-rio-rastro-capa2019-01.jpg",
+                    "https://static.wixstatic.com/media/69eb05_2687665295f446fe86a085ba293f1bdd~mv2.jpg/v1/fill/w_560,h_374,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/69eb05_2687665295f446fe86a085ba293f1bdd~mv2.jpg",
             },
         ],
     },
@@ -75,7 +75,7 @@ const estados = [
         nome: "Rio Grande do Sul",
         capital: "Porto Alegre",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/porto-alegre-rio-grande-do-sul-capa2019-01.jpg",
+            "https://www.matinaljornalismo.com.br/wp-content/uploads/2022/03/vista-aerea-porto-alegre.jpeg",
         descricao:
             "O Rio Grande do Sul destaca-se pela cultura gaúcha, vinícolas, belas serras e cidades turísticas como Gramado e Canela.",
         pontos: [
@@ -83,19 +83,19 @@ const estados = [
                 id: "rs-1",
                 titulo: "Gramado",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/gramado-rio-grande-do-sul-capa2019-01.jpg",
+                    "https://hoteisfioreze.com.br/wp-content/uploads/2020/09/6-pontos-tur%C3%ADsticos-de-Gramado-imperd%C3%ADveis.jpg",
             },
             {
                 id: "rs-2",
                 titulo: "Cânion Itaimbezinho",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/canion-itaimbezinho-rs-capa2019-01.jpg",
+                    "https://cdn.api.wine-locals.com/vivars/images/small_large_itaimbezinho_716814ce17.webp",
             },
             {
                 id: "rs-3",
                 titulo: "Vale dos Vinhedos",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/vale-vinhedos-bento-goncalves-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsoeuYDo3QQRHnKVDHR2_udwHZTfirH-hO4A&s",
             },
         ],
     },

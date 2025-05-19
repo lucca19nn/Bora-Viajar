@@ -17,7 +17,7 @@ const estados = [
         nome: "São Paulo",
         capital: "São Paulo",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/sao-paulo-capa2019-01.jpg",
+            "https://jpimg.com.br/uploads/2024/01/aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade.jpg",
         descricao:
             "São Paulo é o estado mais populoso do Brasil, conhecido por sua capital cosmopolita, praias no litoral, serras e cidades históricas.",
         pontos: [
@@ -25,19 +25,19 @@ const estados = [
                 id: "sp-1",
                 titulo: "Avenida Paulista",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/avenida-paulista-sao-paulo-capa2019-01.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/99/d8/ed/paulista.jpg?w=1200&h=1200&s=1",
             },
             {
                 id: "sp-2",
                 titulo: "Parque Ibirapuera",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/parque-ibirapuera-sao-paulo-capa2019-01.jpg",
+                    "https://www.quintoandar.com.br/guias/wp-content/uploads/2023/08/o-que-fazer-no-parque-ibirapuera.jpeg",
             },
             {
                 id: "sp-3",
                 titulo: "Campos do Jordão",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/campos-jordao-capa2019-01.jpg",
+                    "https://www.essemundoenosso.com.br/wp-content/uploads/2017/12/Quando-ir-pra-Campos-do-Jordao-Destaque.jpg",
             },
         ],
     },
@@ -46,7 +46,7 @@ const estados = [
         nome: "Rio de Janeiro",
         capital: "Rio de Janeiro",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/rio-de-janeiro-capa2019-01.jpg",
+            "https://blog.123milhas.com/wp-content/uploads/2022/12/conheca-os-lugares-com-as-melhores-vistas-do-rio-de-janeiro-conexao123.jpg",
         descricao:
             "O Rio de Janeiro é famoso por suas praias, o Cristo Redentor, o Pão de Açúcar e o Carnaval. Possui belas cidades serranas e litorâneas.",
         pontos: [
@@ -54,19 +54,19 @@ const estados = [
                 id: "rj-1",
                 titulo: "Cristo Redentor",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/cristo-redentor-rio-capa2019-01.jpg",
+                    "https://media.gazetadopovo.com.br/2011/10/427e09b1459e99a981dcd583fc82618e-gpLarge.jpg",
             },
             {
                 id: "rj-2",
                 titulo: "Praia de Copacabana",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/copacabana-rio-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSM9g-MeuXNd9kAKlSsoOG5x4789FHVCg62A&s",
             },
             {
                 id: "rj-3",
                 titulo: "Pão de Açúcar",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/pao-de-acucar-rio-capa2019-01.jpg",
+                    "https://riodejaneiro.tur.br/wp-content/uploads/2024/08/pao-de-acucar-joao-ricardo-januzzi-1024x683.jpg",
             },
         ],
     },
@@ -75,7 +75,7 @@ const estados = [
         nome: "Minas Gerais",
         capital: "Belo Horizonte",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/belo-horizonte-minas-capa2019-01.jpg",
+            "https://viagemeturismo.abril.com.br/wp-content/uploads/2011/09/GettyImages-1164542668.jpg",
         descricao:
             "Minas Gerais é conhecida por suas cidades históricas, culinária típica, montanhas e cachoeiras. Belo Horizonte é a capital do estado.",
         pontos: [
@@ -83,19 +83,19 @@ const estados = [
                 id: "mg-1",
                 titulo: "Ouro Preto",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/ouro-preto-minas-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcBFlzscTSMbGSHhHPecFDt0jjPOqHe5D3TQ&s",
             },
             {
                 id: "mg-2",
                 titulo: "Serra do Cipó",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/serra-cipo-minas-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHPdwEOBCEfuM6JKy0SVjJ_mwvUlWpH6Xjbg&s",
             },
             {
                 id: "mg-3",
                 titulo: "Inhotim",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/inhotim-minas-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdKUKfVAYxqiMa2JpHh4YsEiQZOaeV_0mYQ&s",
             },
         ],
     },
@@ -104,7 +104,7 @@ const estados = [
         nome: "Espírito Santo",
         capital: "Vitória",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/vitoria-espirito-santo-capa2019-01.jpg",
+            "https://blog.123milhas.com/wp-content/uploads/2022/09/vitoria-es-curiosidades-sobre-a-capital-do-espirito-santo-conexao123-1.jpg",
         descricao:
             "O Espírito Santo possui belas praias, montanhas e cultura capixaba. Vitória, a capital, é conhecida por sua qualidade de vida e gastronomia.",
         pontos: [
@@ -112,19 +112,19 @@ const estados = [
                 id: "es-1",
                 titulo: "Praia da Costa",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/praia-costa-vila-velha-capa2019-01.jpg",
+                    "https://images.ctfassets.net/uzue8dgm4ubt/4YIFzd2Gj3d5krPAvW4xul/82e2c602a7b691855fbc540b3e8fcdcb/Praia_da_Costa_Vilha_Velha.jpg",
             },
             {
                 id: "es-2",
                 titulo: "Convento da Penha",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/convento-penha-vila-velha-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdeohWonpNk4JWiobMH2JF8xJk0pgTty61ZA&s",
             },
             {
                 id: "es-3",
                 titulo: "Domingos Martins",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/domingos-martins-es-capa2019-01.jpg",
+                    "https://www.vaidepromo.com.br/blog/wp-content/uploads/2024/01/Onde-fica-Domingos-Martins-1024x682.jpg",
             },
         ],
     },

@@ -17,7 +17,7 @@ const estados = [
         nome: "Distrito Federal",
         capital: "Brasília",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/brasilia-df-capa2019-01.jpg",
+            "https://cdn.blablacar.com/wp-content/uploads/br/2023/10/05100122/brasilia-df-3.webp",
         descricao:
             "O Distrito Federal abriga a capital do Brasil, Brasília, famosa por sua arquitetura moderna, monumentos e vida política intensa.",
         pontos: [
@@ -25,19 +25,19 @@ const estados = [
                 id: "df-1",
                 titulo: "Congresso Nacional",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/congresso-nacional-brasilia-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSykA-QBdI4lwR-C3znHWGxQeIioOSE1qns9A&s",
             },
             {
                 id: "df-2",
                 titulo: "Catedral de Brasília",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/catedral-brasilia-capa2019-01.jpg",
+                    "https://forbes.com.br/wp-content/uploads/2023/04/Life_Brasilia-turismo-1024x683.jpg",
             },
             {
                 id: "df-3",
                 titulo: "Parque da Cidade",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/parque-cidade-brasilia-capa2019-01.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/01/46/cd/visao-aerea.jpg?w=1200&h=-1&s=1",
             },
         ],
     },
@@ -46,7 +46,7 @@ const estados = [
         nome: "Goiás",
         capital: "Goiânia",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/goiania-goias-capa2019-01.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/7c/7d/dd/reflexo-dos-predios-que.jpg?w=1200&h=1200&s=1",
         descricao:
             "Goiás é conhecido por suas cidades históricas, cachoeiras e o Parque Nacional da Chapada dos Veadeiros. Goiânia destaca-se pela vida urbana e áreas verdes.",
         pontos: [
@@ -54,19 +54,19 @@ const estados = [
                 id: "go-1",
                 titulo: "Chapada dos Veadeiros",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/chapada-veadeiros-goias-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqvPqOC2Vr8IIsALxaC_SdIQ2rbQNtZNYnOw&s",
             },
             {
                 id: "go-2",
                 titulo: "Cidade de Goiás",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/cidade-goias-capa2019-01.jpg",
+                    "https://goias.gov.br/cultura/wp-content/uploads/sites/25/2016/08/cidade-de-goias-velho-foto-mantovani-fernandes7730-717.jpg",
             },
             {
                 id: "go-3",
                 titulo: "Parque Flamboyant",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/parque-flamboyant-goiania-capa2019-01.jpg",
+                    "https://www.quintoandar.com.br/guias/wp-content/uploads/2023/02/parque-flamboyant-2-1.jpg",
             },
         ],
     },
@@ -75,7 +75,7 @@ const estados = [
         nome: "Mato Grosso",
         capital: "Cuiabá",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/cuiaba-matogrosso-capa2019-01.jpg",
+            "https://starlis.com.br/wp-content/uploads/2023/04/Depositphotos_410982710_XL.jpg",
         descricao:
             "Mato Grosso é famoso pelo Pantanal, Chapada dos Guimarães e rica biodiversidade. Cuiabá é a porta de entrada para aventuras ecológicas.",
         pontos: [
@@ -83,19 +83,19 @@ const estados = [
                 id: "mt-1",
                 titulo: "Pantanal",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/pantanal-matogrosso-capa2019-01.jpg",
+                    "https://s2.static.brasilescola.uol.com.br/be/2020/06/areas-alagadas.jpg",
             },
             {
                 id: "mt-2",
                 titulo: "Chapada dos Guimarães",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/chapada-guimaraes-matogrosso-capa2019-01.jpg",
+                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2023/07/o-que-fazer-chapada-dos-guimaraes-dicas-capa.jpg",
             },
             {
                 id: "mt-3",
                 titulo: "Parque Mãe Bonifácia",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/parque-mae-bonifacia-cuiaba-capa2019-01.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/b9/7d/65/lindo-lugar-perfeito.jpg?w=1200&h=-1&s=1",
             },
         ],
     },
@@ -104,7 +104,7 @@ const estados = [
         nome: "Mato Grosso do Sul",
         capital: "Campo Grande",
         imagem:
-            "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/campo-grande-matogrossodosul-capa2019-01.jpg",
+            "https://cdn6.campograndenews.com.br/uploads/noticias/2024/05/12/9d0cf80a98547b9abb8719cfe03222fe6c97c4a2.jpeg",
         descricao:
             "Mato Grosso do Sul é conhecido por Bonito, com águas cristalinas, grutas e cachoeiras, além do Pantanal Sul. Campo Grande é moderna e acolhedora.",
         pontos: [
@@ -112,19 +112,19 @@ const estados = [
                 id: "ms-1",
                 titulo: "Bonito",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/bonito-matogrossodosul-capa2019-01.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/3/34/Abismo_Anhumas%2C_Bonito%2C_MS.JPG",
             },
             {
                 id: "ms-2",
                 titulo: "Pantanal Sul",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/pantanal-matogrossodosul-capa2019-01.jpg",
+                    "https://www.bonitoway.com.br/blog/wp-content/uploads/2023/12/bonito_way_bonito_ms_pantanal.png",
             },
             {
                 id: "ms-3",
                 titulo: "Parque das Nações Indígenas",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/parque-nacoes-indigenas-campo-grande-capa2019-01.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tarde_quente.jpg",
             },
         ],
     },

@@ -55,19 +55,19 @@ const estados = [
                 id: "ce-1",
                 titulo: "Canoa Quebrada",
                 imagem:
-                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/43/ac/8f/canoa-quebrada.jpg?w=700&h=400&s=1",
+                    "https://media.istockphoto.com/id/489545923/pt/foto/canoa-quebrada.jpg?s=612x612&w=0&k=20&c=_jD0bpVP3qINSOQIQvKzTDIUTBjCUBOcHt1uhPrQd54=",
             },
             {
                 id: "ce-2",
                 titulo: "Jericoacoara",
                 imagem:
-                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/43/ac/8f/jericoacoara.jpg?w=700&h=400&s=1",
+                    "https://zerandomundo.com/wp-content/uploads/2024/07/Lagoa-do-Paraiso-Jericoacoara.webp",
             },
             {
                 id: "ce-3",
                 titulo: "Fortaleza",
                 imagem:
-                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/43/ac/8f/fortaleza.jpg?w=700&h=400&s=1",
+                    "https://turismo.b-cdn.net/wp-content/uploads/2013/01/Fortaleza-a-capital-do-Ceara.webp",
             },
         ],
     },
@@ -84,19 +84,19 @@ const estados = [
                 id: "al-1",
                 titulo: "Maragogi",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/maragogi-capa2019-01.jpg",
+                    "https://viagemeturismo.abril.com.br/wp-content/uploads/2020/01/destino_mgi_09.jpg?quality=70&strip=info&w=1024",
             },
             {
                 id: "al-2",
                 titulo: "Praia do Gunga",
                 imagem:
-                    "https://www.viagensecaminhos.com/wp-content/uploads/2014/11/praia-do-gunga-alagoas.jpg",
+                    "https://www.praiasdemaceio.com/wp-content/uploads/2017/03/Praia-do-Gunga-AL.png",
             },
             {
                 id: "al-3",
                 titulo: "Pajuçara",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/praia-pajucara-maceio-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXlbXCkIhiuXmk2ddmvP3xkOzq4I2-0jUbuw&s",
             },
         ],
     },
@@ -113,19 +113,19 @@ const estados = [
                 id: "ma-1",
                 titulo: "Lençóis Maranhenses",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/lencois-maranhenses-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeyB1sRk1Edf6rYf23gwaYAEx45QDPt8dPvA&s",
             },
             {
                 id: "ma-2",
                 titulo: "São Luís",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/sao-luis-maranhao-capa2019-01.jpg",
+                    "https://radardf.com.br/wp-content/uploads/2023/12/A-ilha-de-Sao-Luis-e-o-point-no-Maranhao.jpg",
             },
             {
                 id: "ma-3",
                 titulo: "Barreirinhas",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/barreirinhas-maranhao-capa2019-01.jpg",
+                    "https://barreirinhasbrasil.com/wp-content/uploads/2023/05/Barreirinhas-Brasil-1st-img.jpg",
             },
         ],
     },
@@ -142,19 +142,19 @@ const estados = [
                 id: "pb-1",
                 titulo: "Praia de Tambaba",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/praia-tambaba-paraiba-capa2019-01.jpg",
+                    "https://www.destinoparaiba.pb.gov.br/wp-content/uploads/2019/07/Tambaba_1119peq.jpg",
             },
             {
                 id: "pb-2",
                 titulo: "Praia do Jacaré",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/praia-jacare-paraiba-capa2019-01.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/P%C3%B4r_do_Sol_Praia_do_Jacar%C3%A9_-_PB.jpg/1280px-P%C3%B4r_do_Sol_Praia_do_Jacar%C3%A9_-_PB.jpg",
             },
             {
                 id: "pb-3",
                 titulo: "Centro Histórico de João Pessoa",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/joao-pessoa-centro-historico-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBOoZQz9eSoGumR-m8421YrYyMAe1kNz_p5Q&s",
             },
         ],
     },
@@ -171,19 +171,19 @@ const estados = [
                 id: "pe-1",
                 titulo: "Porto de Galinhas",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/porto-galinhas-capa2019-01.jpg",
+                    "https://pousadadasgalinhas.com.br/wp-content/uploads/2024/07/porto-de-galinhas-2.webp",
             },
             {
                 id: "pe-2",
                 titulo: "Recife Antigo",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/recife-antigo-capa2019-01.jpg",
+                    "https://viagemeturismo.abril.com.br/wp-content/uploads/2024/08/marco-zero-recife.jpg?crop=1&resize=1212,909",
             },
             {
                 id: "pe-3",
                 titulo: "Olinda",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/olinda-capa2019-01.jpg",
+                    "https://content.r9cdn.net/rimg/dimg/b9/72/ba475602-city-46823-16775b10715.jpg?width=1366&height=768&xhint=2153&yhint=1532&crop=true",
             },
         ],
     },
@@ -200,19 +200,19 @@ const estados = [
                 id: "pi-1",
                 titulo: "Delta do Parnaíba",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/delta-parnaiba-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXni6ico6l1y_ai69JI_wCIDoGOQC_83MC2w&s",
             },
             {
                 id: "pi-2",
                 titulo: "Serra da Capivara",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/serra-capivara-capa2019-01.jpg",
+                    "https://sesc-sc.com.br/sescsc/cache/imagens/institucional_imagem_pq_Institucional_id_3724.webp",
             },
             {
                 id: "pi-3",
                 titulo: "Praia de Barra Grande",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/barra-grande-piaui-capa2019-01.jpg",
+                    "https://imgmd.net/images/v1/guia/1605273/praia-de-taipu-de-fora.jpg",
             },
         ],
     },
@@ -229,19 +229,19 @@ const estados = [
                 id: "rn-1",
                 titulo: "Genipabu",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/genipabu-capa2019-01.jpg",
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/96/dd/70/lindas-dunas.jpg?w=1200&h=1200&s=1",
             },
             {
                 id: "rn-2",
                 titulo: "Pipa",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/pipa-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPxInzPSj-yt7iiIPvng7AHIIF-7llIw49Kg&s",
             },
             {
                 id: "rn-3",
                 titulo: "Natal",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/natal-capa2019-01.jpg",
+                    "https://www.cnnbrasil.com.br/viagemegastronomia/wp-content/uploads/sites/5/2021/07/Morro-do-careca-Natal.jpg?w=1200&h=900&crop=1",
             },
         ],
     },
@@ -258,19 +258,19 @@ const estados = [
                 id: "se-1",
                 titulo: "Aracaju",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/aracaju-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4ThnHSbjTmW1pKPUifN7fm9Su3qepYL6c0A&s",
             },
             {
                 id: "se-2",
                 titulo: "Cânion do Xingó",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/canion-xingo-capa2019-01.jpg",
+                    "https://agenciaeconordeste.com.br/wp-content/uploads/2020/11/Figura-3-600x900-2.jpg",
             },
             {
                 id: "se-3",
                 titulo: "Praia do Saco",
                 imagem:
-                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/12/praia-saco-sergipe-capa2019-01.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSweQvkLhGunjbkKzfBnhBlWQx6fXXp192NPg&s",
             },
         ],
     },

@@ -22,12 +22,12 @@ export default function Login({ navigation }) {
                     <TextInput
                         style={styles.input}
                         placeholder="Nome ou email"
-                        placeholderTextColor="White"
+                        placeholderTextColor="rgb(37, 37, 37)"
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Senha"
-                        placeholderTextColor="White"
+                        placeholderTextColor="rgb(37, 37, 37)"
                         secureTextEntry
                         value={password}
                         onChangeText={setPassword}
@@ -72,12 +72,13 @@ const styles = StyleSheet.create({
     input: {
         width: "100%",
         height: 50,
-        backgroundColor: "rgba(255, 255, 255, 0.36)",
+        backgroundColor: "rgba(255, 255, 255, 0.42)",
         borderRadius: 20,
         paddingHorizontal: 15,
         marginBottom: 15,
         borderWidth: 1,
-        borderColor: "rgba(255, 255, 255, 0.38)",
+        borderColor: "rgba(0, 255, 179, 0.67)",
+        color: "#000",
     },
     button: {
         width: "100%",

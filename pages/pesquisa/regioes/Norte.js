@@ -1,12 +1,5 @@
-import React from "react";
-import {
-    View,
-    FlatList,
-    Text,
-    Image,
-    TouchableOpacity,
-    Dimensions,
-} from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { View, FlatList, Text, Image, TouchableOpacity, Dimensions, Modal, Pressable, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
@@ -24,8 +17,13 @@ const estados = [
             {
                 id: "ac-1",
                 titulo: "Parque Ambiental Chico Mendes",
-                imagem:
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoklwTAKh16zgSbhbrxPsgs-7By8CVtNZ5SQ&s", // foto principal
+                imagens: [
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoklwTAKh16zgSbhbrxPsgs-7By8CVtNZ5SQ&s",
+                    "url2.jpg",
+                    "url3.jpg"
+                ],
+                descricao: "Descrição do parque..."
             },
             {
                 id: "ac-2",
@@ -219,6 +217,22 @@ const estados = [
 
 export default function Norte() {
     const navigation = useNavigation();
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalPonto, setModalPonto] = useState(null);
+    const flatListRef = useRef();
+    const [modalIndex, setModalIndex] = useState(0);
+
+    useEffect(() => {
+        if (!modalVisible || !modalPonto) return;
+        const interval = setInterval(() => {
+            setModalIndex((prev) => {
+                const next = prev + 1 >= modalPonto.imagens.length ? 0 : prev + 1;
+                flatListRef.current?.scrollToIndex({ index: next, animated: true });
+                return next;
+            });
+        }, 2500);
+        return () => clearInterval(interval);
+    }, [modalVisible, modalPonto]);
 
     const renderItem = ({ item }) => (
         <View style={{ width, alignItems: "center" }}>
@@ -237,11 +251,19 @@ export default function Norte() {
             </View>
 
             <View style={styles.pontosContainer}>
-                {item.pontos.map((ponto) => (
-                    <View key={ponto.id} style={styles.pontoBox}>
+                {item.pontos.map((ponto, index) => (
+                    <Pressable
+                        key={ponto.id}
+                        onPress={() => {
+                            setModalPonto(ponto);
+                            setModalIndex(0);     
+                            setModalVisible(true);
+                        }}
+                        style={styles.pontoBox}
+                    >
                         <Image source={{ uri: ponto.imagem }} style={styles.pontoImage} />
                         <Text style={styles.pontoTitulo}>{ponto.titulo}</Text>
-                    </View>
+                    </Pressable>
                 ))}
             </View>
         </View>
@@ -263,6 +285,73 @@ export default function Norte() {
             >
                 <Text style={styles.buttonText}>Voltar ao Filtro</Text>
             </TouchableOpacity>
+            <Modal
+                visible={modalVisible}
+                transparent
+                animationType="fade"
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={{
+                    flex: 1,
+                    backgroundColor: "rgba(0,0,0,0.7)",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <View style={{
+                        backgroundColor: "#fff",
+                        borderRadius: 20,
+                        padding: 20,
+                        alignItems: "center",
+                        maxWidth: width * 0.9,
+                        width: width * 0.9,
+                        maxHeight: "80%",
+                        justifyContent: "center",
+                    }}>
+                        <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+                            {modalPonto && (
+                                <>
+                                    <FlatList
+                                        ref={flatListRef}
+                                        data={modalPonto.imagens}
+                                        horizontal
+                                        pagingEnabled
+                                        showsHorizontalScrollIndicator={false}
+                                        keyExtractor={(_, idx) => idx.toString()}
+                                        renderItem={({ item }) => (
+                                            <View style={{ alignItems: "center", width: width * 0.8, justifyContent: "center" }}>
+                                                <Image
+                                                    source={{ uri: item }}
+                                                    style={{ width: width * 0.7, height: width * 0.7, borderRadius: 20, marginBottom: 16 }}
+                                                    resizeMode="cover"
+                                                />
+                                                <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10, textAlign: "center" }}>
+                                                    {modalPonto.titulo}
+                                                </Text>
+                                                <Text style={{ fontSize: 16, textAlign: "center", marginBottom: 20 }}>
+                                                    {modalPonto.descricao}
+                                                </Text>
+                                            </View>
+                                        )}
+                                        getItemLayout={(_, index) => ({
+                                            length: width * 0.8,
+                                            offset: (width * 0.8) * index,
+                                            index,
+                                        })}
+                                        initialScrollIndex={modalIndex}
+                                        onMomentumScrollEnd={e => {
+                                            const newIndex = Math.round(e.nativeEvent.contentOffset.x / (width * 0.8));
+                                            setModalIndex(newIndex);
+                                        }}
+                                    />
+                                    <TouchableOpacity onPress={() => setModalVisible(false)} style={{ marginTop: 10 }}>
+                                        <Text style={{ color: "#00bcd4", fontWeight: "bold", fontSize: 16 }}>Fechar</Text>
+                                    </TouchableOpacity>
+                                </>
+                            )}
+                        </ScrollView>
+                    </View>
+                </View>
+            </Modal>
         </View>
     );
 }

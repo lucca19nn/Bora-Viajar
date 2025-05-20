@@ -10,32 +10,44 @@ const estados = [
         nome: "Acre",
         capital: "Rio Branco",
         imagem:
-            "https://i.pinimg.com/564x/c4/9b/d3/c49bd30d7b0ab36ad6292fcb07a8e233.jpg",
+            "https://www.penaestrada.blog.br/wp-content/webp-express/webp-images/uploads/2013/05/rio-branco-20.jpg.webp",
         descricao:
             "O Acre é conhecido por sua floresta amazônica, cultura indígena e rios navegáveis. Rio Branco, a capital, oferece museus e contato com a natureza.",
         pontos: [
             {
                 id: "ac-1",
                 titulo: "Parque Ambiental Chico Mendes",
-                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoklwTAKh16zgSbhbrxPsgs-7By8CVtNZ5SQ&s", // foto principal
+                imagem: "https://rbminio.riobranco.ac.gov.br/turismo/attractions/20240620110842_6a53a30f500275328bd6c2208daabbc6.jpg",
                 imagens: [
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoklwTAKh16zgSbhbrxPsgs-7By8CVtNZ5SQ&s",
-                    "url2.jpg",
-                    "url3.jpg"
+                    "https://rbminio.riobranco.ac.gov.br/turismo/attractions/20240102131730_667989af8ca89fa5c500cda42e288af3.jpg",
+                    "https://rbminio.riobranco.ac.gov.br/turismo/attractions/20240624095027_c3f33f20c3a39d6b752ff836aceaecd2.jpg",
+                    "https://rbminio.riobranco.ac.gov.br/turismo/attractions/20240624095123_7fa92ac97ad0abe02a50b04860ad48ec.jpg",
+                    "https://rbminio.riobranco.ac.gov.br/turismo/attractions/20240624095330_c22225eccc3514f3f2ffa7750a435797.jpg"
                 ],
                 descricao: "Descrição do parque..."
             },
             {
                 id: "ac-2",
                 titulo: "Rio Acre",
-                imagem:
-                    "https://upload.wikimedia.org/wikipedia/commons/a/a5/A_vis%C3%A3o_a%C3%A9rea_do_rio_Acre_mostra_a_impon%C3%AAncia_de_suas_pontes_e_passarela.jpg",
+                imagem: "https://ac24horas.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-17-at-18.33.11-1000x600.webp",
+                imagens: [
+                    "https://s2.glbimg.com/QLB5HE65bOW4stJ_TRZnAswbpEE=/620x465/s.glbimg.com/jo/g1/f/original/2015/03/02/cheia_acre_-_foto_jp_30.jpg",
+                    "https://ac24horas.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-17-at-18.33.12-1-1000x600.webp",
+                    "https://folhadoacre.com.br/wp-content/uploads/2024/12/RIO-ACRE-WHIDY-1000x576-1-1.jpg"
+                ],
+                descricao: "O Rio Acre é um dos principais rios da região Norte, cortando a cidade de Rio Branco e proporcionando belas paisagens e passeios de barco."
             },
             {
                 id: "ac-3",
                 titulo: "Museu da Borracha",
-                imagem:
-                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/7d/76/42/em-obras.jpg?w=1200&h=-1&s=1",
+                imagem: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/7d/76/42/em-obras.jpg?w=1200&h=-1&s=1",
+                imagens: [
+                    "https://s2-g1.glbimg.com/Oi-grWJcYuynGHzeOIwStvVy7-k=/0x0:1536x866/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2023/y/5/doet6eQS2ct383i4fLeQ/museu-da-borrracha.jpg",
+                    "http://painel.portalamazonia.com/uploads/RTEmagicC_museu-borracha-6-acre.jpg.jpg",
+                    "http://painel.portalamazonia.com/uploads/RTEmagicC_museu-borracha-8-acre.jpg.jpg",
+                    "https://www.femcultura.ac.gov.br/wp-content/uploads/2019/11/211-1536x1152.jpg"
+                ],
+                descricao: "O Museu da Borracha preserva a história do ciclo da borracha no Acre, com acervo de objetos, documentos e fotografias."
             },
         ],
     },
@@ -53,18 +65,36 @@ const estados = [
                 titulo: "Teatro Amazonas",
                 imagem:
                     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/3f/0c/8e/museu-do-teatro-amazonas.jpg?w=1200&h=1200&s=1",
+                imagens: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/3f/0c/8e/museu-do-teatro-amazonas.jpg?w=1200&h=1200&s=1",
+                    "https://upload.wikimedia.org/wikipedia/commons/7/7e/Teatro_Amazonas_-_Manaus_-_Amazonas_-_Brasil.jpg",
+                    "https://www.cnnbrasil.com.br/wp-content/uploads/sites/5/2022/03/teatro-amazonas-manaus.jpg"
+                ],
+                descricao: "O Teatro Amazonas é um dos principais cartões-postais de Manaus, símbolo da riqueza do ciclo da borracha."
             },
             {
                 id: "am-2",
                 titulo: "Encontro das Águas",
                 imagem:
                     "https://cdn-hweb.hsystem.com.br/5873d325c19a4207cc40b87c/8551c7cb9ffa4963855c752b712f2edc.jpg",
+                imagens: [
+                    "https://cdn-hweb.hsystem.com.br/5873d325c19a4207cc40b87c/8551c7cb9ffa4963855c752b712f2edc.jpg",
+                    "https://www.melhoresdestinos.com.br/wp-content/uploads/2019/01/encontro-das-aguas-manaus-capa2019-01.jpg",
+                    "https://www.passagenspromo.com.br/blog/wp-content/uploads/2020/01/encontro-das-aguas-manaus.jpg"
+                ],
+                descricao: "O Encontro das Águas é o fenômeno natural onde os rios Negro e Solimões correm lado a lado sem se misturar por vários quilômetros."
             },
             {
                 id: "am-3",
                 titulo: "Mercado Municipal Adolpho Lisboa",
                 imagem:
                     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/26/7e/4b/mercado-municipal-adolfo.jpg?w=1200&h=1200&s=1",
+                imagens: [
+                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/26/7e/4b/mercado-municipal-adolfo.jpg?w=1200&h=1200&s=1",
+                    "https://manausonline.net/imagens/mercado-adolpho-lisboa.jpg",
+                    "https://www.manaus.am.gov.br/files/2022/11/mercado-adolpho-lisboa.jpg"
+                ],
+                descricao: "O Mercado Municipal Adolpho Lisboa é um dos mais antigos do Brasil, com arquitetura inspirada nos mercados europeus."
             },
         ],
     },

@@ -1,7 +1,8 @@
 import React from "react";
-import { Text, View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Dimensions } from "react-native";
+import { View, StyleSheet, FlatList, SafeAreaView} from "react-native";
 import CardSobre from "../components/CardSobre";
 import { useNavigation } from "@react-navigation/native";
+import CustomHeader from "../components/CustomHeader";
 
 export default function Sobre() {
     const sobre = [
@@ -17,7 +18,7 @@ export default function Sobre() {
             id: "2",
             name: "Andre",
             age: "Eu sou Desenvolvedor Mobile e tenho 18 anos, moro em Campinas-SP",
-            image: "",
+            image: require("../assets/andre.jpg"),
             link: "",
             isLocalImage: true,
         },
@@ -25,8 +26,8 @@ export default function Sobre() {
             id: "3",
             name: "Flavia",
             age: "Eu sou Scrum Master e desenvolvedora Front-End e tenho 17 anos, moro em Campinas-SP",
-            image: "",
-            link: "",
+            image: require("../assets/flavia.jpg"),
+            link: "https://www.linkedin.com/in/flaviamendes17?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
             isLocalImage: true,
         },
         {
@@ -34,13 +35,13 @@ export default function Sobre() {
             name: "Giovanna",
             age: "Eu sou Desenvolvedora Front-End e tenho 17 anos, moro em Valinhos-SP",
             image: require("../assets/giovanna.jpg"),
-            link: "https://www.linkedin.com/in/isabella-borin-792b222b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            link: "https://www.linkedin.com/in/giovanna-caron?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
             isLocalImage: true,
         },
         {
             id: "5",
             name: "Isabella",
-            age: "Eu sou Desenvolvedora Mobile e tenho 17 anos, moro em Campinas-SP",
+            age: "Eu sou Desenvolvedora Mobile e tenho 17 anos, moro em Valinhos-SP",
             image: require("../assets/isabella.jpg"),
             link: "https://www.linkedin.com/in/isabella-borin-792b222b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
             isLocalImage: true,
@@ -58,7 +59,7 @@ export default function Sobre() {
             name: "Laura",
             age: "Eu sou PO (Product Owner), Tech Lead e desenvolvedora Back-End e tenho 17 anos, moro em Valinhos-SP",
             image: require("../assets/laura.jpg"),
-            link: "",
+            link: "https://www.linkedin.com/in/laura-ferreira-violla-a526b12b1/",
             isLocalImage: true,
         },
     ];
@@ -67,14 +68,13 @@ export default function Sobre() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Sobre Nós</Text>
+            <CustomHeader title="Sobre nós" onBack={() => navigation.goBack()} />
             <FlatList
                 style={styles.verticalList}
                 data={sobre}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View style={styles.cardContainer}>
-                        {/* Passando as propriedades diretamente para o CardSobre */}
                         <CardSobre 
                             name={item.name} 
                             age={item.age} 
@@ -84,9 +84,6 @@ export default function Sobre() {
                     </View>
                 )}
             />
-            <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
-                <Text style={styles.buttonText}>Voltar ao Filtro</Text>
-            </TouchableOpacity>
         </SafeAreaView>
     );
 }

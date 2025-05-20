@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 export default function Post({ post }) {
+    const [isFollowing, setIsFollowing] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [bookmarked, setBookmarked] = useState(false);
+
+    const handleFollow = () => {
+        setIsFollowing(!isFollowing);
+    };
+    const handleLike = () => setLiked(!liked);
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -15,6 +24,18 @@ export default function Post({ post }) {
                     <Text style={styles.userName}>{post?.name}</Text>
                     <Text style={styles.userHandle}>{post?.username || '@username'}</Text>
                 </View>
+                {/* Botão Seguir no canto superior direito */}
+                <TouchableOpacity
+                    style={[
+                        styles.followButton,
+                        { backgroundColor: isFollowing ? '#1b9999' : '#25C0C0' }
+                    ]}
+                    onPress={handleFollow}
+                >
+                    <Text style={styles.followButtonText}>
+                        {isFollowing ? 'Seguindo' : 'Seguir'}
+                    </Text>
+                </TouchableOpacity>
             </View>
             <Text style={styles.postContent}>
                 {post?.description || "No description available"}
@@ -33,10 +54,22 @@ export default function Post({ post }) {
                 </View>
             ) : null}
             <View style={styles.iconContainer}>
-                <FontAwesome name="heart-o" size={24} color="black" />
+            <TouchableOpacity onPress={handleLike}>
+                <FontAwesome
+                    name={liked ? "heart" : "heart-o"}
+                    size={24}
+                    color={liked ? "red" : "black"}
+                />
+            </TouchableOpacity>
                 <FontAwesome name="comment-o" size={24} color="black" />
                 <FontAwesome name="share" size={24} color="black" />
-                <FontAwesome name="bookmark-o" size={24} color="black" />
+            <TouchableOpacity onPress={() => setBookmarked(!bookmarked)}>
+                <FontAwesome
+                    name={bookmarked ? "bookmark" : "bookmark-o"}
+                    size={24}
+                    color={bookmarked ? "#25C0C0" : "black"}
+                    />
+                    </TouchableOpacity>
             </View>
         </View>
     );
@@ -45,12 +78,12 @@ export default function Post({ post }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: width * 0.95, // Usa 95% da largura da tela
+        width: width * 0.95,
         backgroundColor: '#fff',
         borderRadius: 12,
         padding: 15,
-        marginVertical: 10, // Espaçamento vertical entre os posts
-        marginHorizontal: width * 0.025, // Centraliza horizontalmente
+        marginVertical: 10,
+        marginHorizontal: width * 0.025,
         elevation: 3,
         borderWidth: 1,
         borderColor: '#ddd',
@@ -59,6 +92,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10,
+        position: 'relative',
+    },
+    followButton: {
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        zIndex: 2,
+        paddingVertical: 6,
+        paddingHorizontal: 18,
+        borderRadius: 14,
+    },
+    followButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 14,
     },
     profileImage: {
         width: 50,

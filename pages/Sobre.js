@@ -51,7 +51,7 @@ export default function Sobre() {
             name: "João",
             age: "Eu sou Desenvolvedor Back-End e tenho 17 anos, moro em Campinas-SP",
             image: "",
-            link: "",
+            link: "https://www.linkedin.com/in/jo%C3%A3o-vitor-porto-sales-18bb202b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
             isLocalImage: true,
         },
         {

@@ -3,6 +3,7 @@ import { Image, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"; 
 import Home from "../pages/Home";
 import Filtro from "../pages/Filtro"; 
+import Mapa from "../pages/Mapa";
 import Icon from "react-native-vector-icons/Ionicons";
 import logobora from "../assets/logobora.png";
 import { useNavigation } from '@react-navigation/native';
@@ -87,6 +88,16 @@ export default function TabNavigation() {
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="location-sharp" color={color} size={size} />
+                    ),
+                    headerShown: true,
+                }}
+            />
+            <Tab.Screen 
+                name="Mapa" 
+                component={Mapa} 
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="navigate" color={color} size={size} />
                     ),
                     headerShown: true,
                 }}

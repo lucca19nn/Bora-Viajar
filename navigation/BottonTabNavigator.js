@@ -97,7 +97,7 @@ export default function TabNavigation() {
                 component={Mapa} 
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name="navigate" color={color} size={size} />
+                        <Icon name="map" color={color} size={size} />
                     ),
                     headerShown: true,
                 }}

@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "90%",
         marginTop: 100,
+        marginBottom: 25,
     },
     title: {
         fontSize: 24,
@@ -92,6 +93,7 @@ const styles = StyleSheet.create({
         position: "absolute", 
         bottom: 13, 
         zIndex: 1, 
+        marginBottom: 20,
     },
     buttonText: {
         fontSize: 24,

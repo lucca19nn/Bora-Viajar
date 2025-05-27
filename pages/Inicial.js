@@ -17,8 +17,10 @@ export default function Inicial({ navigation }) {
                     <Text style={styles.title}>Bem vindo ao Bora!</Text>
                     <Text style={styles.subtitle}>Qual seu próximo destino?</Text>
                     <Text style={styles.description}>
-                        Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição 
-
+                        Descubra destinos incríveis, explore experiências únicas e encontre as melhores dicas para sua próxima aventura. No Bora, sua próxima aventura começa aqui.
+                    </Text>
+                    <Text style={styles.footerText}>
+                        Entre agora e deixe o mundo te surpreender!
                     </Text>
                 </View>
 
@@ -77,6 +79,8 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 10,
         textAlign: "center",
+        lineHeight: 20,
+        paddingHorizontal: 20,
     },
     button: {
         width: 60,
@@ -92,6 +96,13 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 24,
         color: "#00C4B4", 
+        fontWeight: "bold",
+    },
+    footerText: {
+        fontSize: 14,
+        color: "white",
+        marginTop: 10,
+        textAlign: "center",
         fontWeight: "bold",
     },
 });

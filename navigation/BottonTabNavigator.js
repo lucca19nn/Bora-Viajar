@@ -32,7 +32,7 @@ export default function TabNavigation() {
             <TouchableOpacity onPress={() => navigation.navigate('Sobre')}>
                 <Image
                     source={{ uri: "https://lh3.googleusercontent.com/chat_attachment/AP1Ws4vn-lpOeUcOTKUCFyKN7CyO5U0nU44NM98-tyylHdJVSLF27D0o8SuicfapfMqCpuMf6eJYk1Gp0AP59eCSqZQC5rvPs8IUMQCoD_b2Se7LCz_d62kXWKdMTIoUuZFqZ7-LqwKMyTDu68Zkdh6_2mwrzD0r6yhoFSwRg2TDYQMjvcWpO4nNceLZBHh5CY2P7TmUr0KYz3eSSC9XKwlIShUdkvCqNMVfDtVGJQcVpN6wjTiWpcIAZCjDFh0GEY6PfQgO5Bze0jv_L6DVi3cvvYbWywPTb7QY2HQ8RtFulDuFbBaFSnFM8lOHXCuLLTZhWt0=w680-h639" }} 
-                    style={{ width: 40, height: 40, margin: 15, resizeMode: "contain" }}
+                    style={{ width: 39, height: 39, margin: 20, resizeMode: "contain" }}
                 />
             </TouchableOpacity>
             ),

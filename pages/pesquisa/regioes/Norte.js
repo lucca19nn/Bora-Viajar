@@ -347,11 +347,13 @@ export default function Norte() {
                                         pagingEnabled
                                         showsHorizontalScrollIndicator={false}
                                         keyExtractor={(_, idx) => idx.toString()}
+                                        style={{ width: width * 0.8, alignSelf: "center" }}
+                                        contentContainerStyle={{ alignItems: "center" }}
                                         renderItem={({ item }) => (
                                             <View style={{ alignItems: "center", width: width * 0.8, justifyContent: "center" }}>
                                                 <Image
                                                     source={{ uri: item }}
-                                                    style={{ width: width * 0.7, height: width * 0.7, borderRadius: 20, marginBottom: 16 }}
+                                                    style={{ width: width * 0.8, height: width * 0.8, borderRadius: 20, marginBottom: 16 }}
                                                     resizeMode="cover"
                                                 />
                                                 <Text style={{ fontSize: 20, fontWeight: "bold", marginBottom: 10, textAlign: "center" }}>
@@ -396,7 +398,7 @@ const styles = {
     },
     headerImage: {
         width: width,
-        height: 350,
+        height: 300,
         resizeMode: "cover",
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,

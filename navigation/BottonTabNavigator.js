@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Home from "../pages/Home";
 import Filtro from "../pages/Filtro"; 
-import Mapa from "../pages/Mapa";
 import Icon from "react-native-vector-icons/Ionicons";
 import logobora from "../assets/logobora.png";
 import { useNavigation } from '@react-navigation/native';
@@ -98,15 +97,6 @@ export default function TabNavigation() {
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="location-sharp" color={color} size={size} />
-                    ),
-                }}
-            />
-            <Tab.Screen 
-                name="Mapa" 
-                component={Mapa} 
-                options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <Icon name="map" color={color} size={size} />
                     ),
                 }}
             />

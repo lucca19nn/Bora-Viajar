@@ -1,35 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, StyleSheet, Modal, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Card from "../components/Card";
 import CardFiltro from "../components/CardFiltros";
+import axios from "axios";
 
 export default function Filtro() {
   const navigation = useNavigation();
-
-  const destinos = [
-    { id: "1", title: "Norte", subtitle: "Veja mais...", image: "https://imgmd.net/images/c_limit%2Cw_3200/v1/guia/1698592/norte-5-cat.jpg", navigateTo: "Norte" },
-    { id: "2", title: "Nordeste", subtitle: "Veja mais...", image: "https://blog.hurb.com/wp-content/uploads/2024/09/10-Melhores-Praias-do-Nordeste-Brasileiro-Capa.jpg", navigateTo: "Nordeste" },
-    { id: "3", title: "Centro-Oeste", subtitle: "Veja mais...", image: "https://www.vidadeturista.com/wp-content/uploads/2016/03/cidades-outono-2016-brasilia-df.jpg", navigateTo: "Centro" },
-    { id: "4", title: "Sul", subtitle: "Veja mais...", image: "https://media.staticontent.com/media/pictures/04641818-297a-4f28-b635-b15e2fb31087", navigateTo: "Sul" },
-    { id: "5", title: "Sudeste", subtitle: "Veja mais...", image: "https://cdn.blablacar.com/wp-content/uploads/br/2024/06/05094038/rio-de-janeiro.webp", navigateTo: "Sudeste" },
-    { id: "6", title: "Pantanal em Alta", subtitle: "A vida selvagem do Centro-Oeste", image: "https://www.melhoresdestinos.com.br/wp-content/uploads/2022/09/pantanal-capa2022-01.jpg", navigateTo: "Centro" },
-    { id: "7", title: "Festas Juninas", subtitle: "Tradições do Nordeste", image: "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/06/festa-junina-nordeste.jpg", navigateTo: "Nordeste" },
-    { id: "8", title: "Cataratas do Iguaçu", subtitle: "Belezas do Sul", image: "https://www.carpemundi.com.br/wp-content/uploads/2017/07/cataratas-iguacu.jpg", navigateTo: "Sul" },
-    { id: "9", title: "Amazônia Viva", subtitle: "Natureza do Norte", image: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2022/08/amazonia.jpg", navigateTo: "Norte" },
-    { id: "10", title: "Cidades Históricas", subtitle: "Riqueza do Sudeste", image: "https://www.melhoresdestinos.com.br/wp-content/uploads/2022/04/cidades-historicas-minas-capa2022-01.jpg", navigateTo: "Sudeste" },
-  ];
-
-  const noticias = [
-    { id: "1", title: "Norte", subtitle: "Veja mais...", image: "https://imgmd.net/images/c_limit%2Cw_3200/v1/guia/1698592/norte-5-cat.jpg", navigateTo: "Norte" },
-    { id: "2", title: "Nordeste", subtitle: "Veja mais...", image: "https://blog.hurb.com/wp-content/uploads/2024/09/10-Melhores-Praias-do-Nordeste-Brasileiro-Capa.jpg", navigateTo: "Nordeste" },
-    { id: "3", title: "Centro-Oeste", subtitle: "Veja mais...", image: "https://www.vidadeturista.com/wp-content/uploads/2016/03/cidades-outono-2016-brasilia-df.jpg", navigateTo: "Centro" },
-    { id: "4", title: "Sul", subtitle: "Veja mais...", image: "https://media.staticontent.com/media/pictures/04641818-297a-4f28-b635-b15e2fb31087", navigateTo: "Sul" },
-    { id: "5", title: "Sudeste", subtitle: "Veja mais...", image: "https://cdn.blablacar.com/wp-content/uploads/br/2024/06/05094038/rio-de-janeiro.webp", navigateTo: "Sudeste" },
-  ];
-
+  const [data, setData] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalData, setModalData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://10.88.201.131:3000/api/news");
+        setData(response.data);
+        console.log("Dados recebidos:", response.data);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+        
+      }
+    };
+    fetchData();
+  }, []);
 
   const openModal = (item) => {
     setModalData(item);
@@ -41,28 +35,39 @@ export default function Filtro() {
     setModalData(null);
   };
 
+  const destinos = [
+    { id: "1", title: "Norte", subtitle: "Veja mais...", image: "https://imgmd.net/images/c_limit%2Cw_3200/v1/guia/1698592/norte-5-cat.jpg", navigateTo: "Norte" },
+    { id: "2", title: "Nordeste", subtitle: "Veja mais...", image: "https://blog.hurb.com/wp-content/uploads/2024/09/10-Melhores-Praias-do-Nordeste-Brasileiro-Capa.jpg", navigateTo: "Nordeste" },
+    { id: "3", title: "Centro-Oeste", subtitle: "Veja mais...", image: "https://www.vidadeturista.com/wp-content/uploads/2016/03/cidades-outono-2016-brasilia-df.jpg", navigateTo: "Centro" },
+    { id: "4", title: "Sul", subtitle: "Veja mais...", image: "https://media.staticontent.com/media/pictures/04641818-297a-4f28-b635-b15e2fb31087", navigateTo: "Sul" },
+    { id: "5", title: "Sudeste", subtitle: "Veja mais...", image: "https://cdn.blablacar.com/wp-content/uploads/br/2024/06/05094038/rio-de-janeiro.webp", navigateTo: "Sudeste" },
+  ];
+
+
+
+
   return (
     <View style={{ flex: 1 }}>
       <FlatList
-        data={noticias}
+        data={destinos}
         ListHeaderComponent={
           <>
             <Text style={styles.title}>Principais Notícias</Text>
-            <FlatList
-              data={destinos}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 10 }}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <Card
-                  title={item.title}
-                  description={item.subtitle}
-                  image={item.image}
-                  onPress={() => openModal(item)} // Abre modal só nos cards horizontais
-                />
-              )}
-            />
+              <FlatList
+                data={data}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingHorizontal: 10 }}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => (
+                  <Card
+                    title={item.name}
+                    description={item.place}
+                    image={item.image}
+                    onPress={() => openModal(item)}
+                  />  
+                )}
+              />
             <Text style={styles.title}>Top destinos</Text>
           </>
         }
@@ -75,7 +80,7 @@ export default function Filtro() {
             title={item.title}
             description={item.subtitle}
             image={item.image}
-            onPress={() => navigation.navigate(item.navigateTo)} // Navegação normal nos cards verticais
+            onPress={() => navigation.navigate(item.navigateTo)} 
           />
         )}
       />
@@ -83,17 +88,17 @@ export default function Filtro() {
       <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <View style={styles.modalBackground}>
           <View style={styles.modalContainer}>
-            {modalData && (
-              <>
-                <Image source={{ uri: modalData.image }} style={styles.modalImage} />
-                <Text style={styles.modalTitle}>{modalData.title}</Text>
-                <Text style={styles.modalSubtitle}>{modalData.subtitle}</Text>
+          {modalData && (
+                  <>
+                    <Image source={{ uri: modalData.image }} style={styles.modalImage} />
+                    <Text style={styles.modalTitle}>{modalData.name}</Text>
+                    <Text style={styles.modalSubtitle}>{modalData.text}</Text>
 
-                <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-                  <Text style={styles.closeButtonText}>Fechar</Text>
-                </TouchableOpacity>
-              </>
-            )}
+                    <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+                      <Text style={styles.closeButtonText}>Fechar</Text>
+                    </TouchableOpacity>
+                  </>
+                )}
           </View>
         </View>
       </Modal>

@@ -4,13 +4,18 @@ import { FontAwesome } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 export default function Post({ post }) {
+    console.log(post);
     const [isFollowing, setIsFollowing] = useState(false);
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
 
+
+    const userPhoto = post?.user?.photo || 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
+    const userName = post?.user?.name || 'Usuário';
+
     const handleFollow = () => {
         setIsFollowing(!isFollowing);
-    };
+    }
     const handleLike = () => setLiked(!liked);
 
     return (
@@ -18,13 +23,14 @@ export default function Post({ post }) {
             <View style={styles.header}>
                 <Image
                     style={styles.profileImage}
-                    source={{ uri: post?.photo }}
+                    source={userPhoto}
                 />
                 <View style={styles.userDetails}>
-                    <Text style={styles.userName}>{post?.name}</Text>
-                    <Text style={styles.userHandle}>{post?.username || '@username'}</Text>
+                    <Text style={styles.userName}>{userName}</Text>
+                    <Text style={styles.userHandle}>
+                        {post?.user?.username ? '@' + post.user.username : '@username'}
+                    </Text>
                 </View>
-                {/* Botão Seguir no canto superior direito */}
                 <TouchableOpacity
                     style={[
                         styles.followButton,
@@ -54,22 +60,22 @@ export default function Post({ post }) {
                 </View>
             ) : null}
             <View style={styles.iconContainer}>
-            <TouchableOpacity onPress={handleLike}>
-                <FontAwesome
-                    name={liked ? "heart" : "heart-o"}
-                    size={24}
-                    color={liked ? "red" : "black"}
-                />
-            </TouchableOpacity>
+                <TouchableOpacity onPress={handleLike}>
+                    <FontAwesome
+                        name={liked ? "heart" : "heart-o"}
+                        size={24}
+                        color={liked ? "red" : "black"}
+                    />
+                </TouchableOpacity>
                 <FontAwesome name="comment-o" size={24} color="black" />
                 <FontAwesome name="share" size={24} color="black" />
-            <TouchableOpacity onPress={() => setBookmarked(!bookmarked)}>
-                <FontAwesome
-                    name={bookmarked ? "bookmark" : "bookmark-o"}
-                    size={24}
-                    color={bookmarked ? "#25C0C0" : "black"}
+                <TouchableOpacity onPress={() => setBookmarked(!bookmarked)}>
+                    <FontAwesome
+                        name={bookmarked ? "bookmark" : "bookmark-o"}
+                        size={24}
+                        color={bookmarked ? "#25C0C0" : "black"}
                     />
-                    </TouchableOpacity>
+                </TouchableOpacity>
             </View>
         </View>
     );

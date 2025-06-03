@@ -105,7 +105,7 @@ export default function Mapa() {
                         <Marker coordinate={location} title="Você está aqui" />
                         {routeCoords.length > 0 && (
                             <>
-                                <Polyline coordinates={routeCoords} strokeWidth={4} strokeColor="#1b9999" />
+                                <Polyline coordinates={routeCoords} strokeWidth={4} strokeColor="#25C0C0" />
 
                                 <Marker coordinate={routeCoords[routeCoords.length - 1]} title="Destino" />
                             </>

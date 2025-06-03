@@ -12,12 +12,8 @@ export default function Home() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                // Duas URLs diferentes
-                const postsUrl = 'http://10.88.199.132:3000/api/posts';
-                const usersUrl = 'http://10.88.199.132:3000/api/users';
-    
-                // Faz as duas requisições em paralelo
-                const [response1, response2] = await Promise.all([
+                const postsUrl = 'http://10.88.195.35:3000/api/posts';
+                const [response] = await Promise.all([
                     fetch(postsUrl, {
                         method: 'GET',
                         headers: {
@@ -25,19 +21,11 @@ export default function Home() {
                             'x-api-key': 'B0raV1@j@2025',
                         },
                     }),
-                    fetch(usersUrl, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'x-api-key': 'B0raV1@j@2025',
-                        },
-                    }),
                 ]);
-    
-                const data1 = await response1.json();
-                const data2 = await response2.json();
 
-                setPosts([...data1, ...data2]);
+                const data = await response.json();
+
+                setPosts(data);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -47,6 +35,7 @@ export default function Home() {
     
         fetchPosts();
     }, []);
+
     return (
         <SafeAreaView style={styles.container}>
             <FlatList

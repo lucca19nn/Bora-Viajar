@@ -1,10 +1,21 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const Users = ({ name, email, photo, onPress }) => {
+export default function Users ({ name, email, photo, onPress }) {
+
+    let imageSource;
+    if (photo) {
+        imageSource = { uri: `http://10.88.199.140:3000/uploads/${photo}` };
+    } else {
+        imageSource = require("../assets/userProfile.jpg"); 
+    }
+
     return (
         <TouchableOpacity style={styles.card} onPress={onPress}>
-            <Image source={{ uri: `http://10.88.199.170:3000/uploads/${photo}` }} style={styles.image} />
+            <Image
+                source={ imageSource }
+                style={styles.image}
+            />
             <View style={styles.textContainer}>
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.subtitle}>{email}</Text>
@@ -15,32 +26,37 @@ const Users = ({ name, email, photo, onPress }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: 180,
-        height: 230, 
-        backgroundColor: "#25c0c0",
+        flexDirection: "row",
+        alignItems: "center",
+        width: 370,
+        height: 100,
+        backgroundColor: "#ffffff",
         borderRadius: 10,
         marginVertical: 8,
-        marginHorizontal: 8, 
+        marginHorizontal: 8,
         overflow: "hidden",
-        alignItems: "center",
+        padding: 10,
     },
     image: {
-        width: "100%",
-        height: 120,
+        width: 70,
+        height: 70,
+        borderRadius: 35,
+        marginRight: 16,
+        backgroundColor: "#25c0c0",
     },
     textContainer: {
-        padding: 10,
-        alignItems: "center",
+        flex: 1,
+        justifyContent: "center",
     },
     title: {
         fontSize: 18,
         fontWeight: "bold",
-        color: "#fff",
-        textAlign: "center",
+        color: "#000000",
+        textAlign: "left",
     },
     subtitle: {
-        fontSize: 14,
-        color: "#fff",
-        textAlign: "center",
+        fontSize: 16,
+        color: "#000000",
+        textAlign: "left",
     },
 });

@@ -1,14 +1,15 @@
-import React from "react"; 
+import React from "react";
 import { Image, TouchableOpacity } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"; 
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Home from "../pages/Home";
-import Filtro from "../pages/Filtro"; 
+import Pesquisa from "../pages/Pesquisa";
+import Filtro from "../pages/Filtro";
 import Icon from "react-native-vector-icons/Ionicons";
 import logobora from "../assets/logobora.png";
 import { useNavigation } from '@react-navigation/native';
 
-const Tab = createBottomTabNavigator(); 
+const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {
     const navigation = useNavigation();
@@ -82,18 +83,27 @@ export default function TabNavigation() {
                 tabBarInactiveTintColor: "white",
             }}
         >
-            <Tab.Screen 
-                name="Home" 
-                component={Home} 
+            <Tab.Screen
+                name="Home"
+                component={Home}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="home" color={color} size={size} />
                     ),
                 }}
             />
-            <Tab.Screen 
-                name="Filtro" 
-                component={Filtro} 
+            <Tab.Screen
+                name="Pesquisa"
+                component={Pesquisa}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="search" color={color} size={size} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Filtro"
+                component={Filtro}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="location-sharp" color={color} size={size} />

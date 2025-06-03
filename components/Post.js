@@ -12,8 +12,10 @@ export default function Post({ post }) {
 
 
     const userPhoto = post?.photo
-        ? `http://10.88.195.35:3000/uploads/${post.photo}`
+        ? `http://10.88.200.175:3000/uploads/${post.photo}`
         : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
+
+        console.log(userPhoto);
 
     const userName = post?.usuario || 'Usuário';
 

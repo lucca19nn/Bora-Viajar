@@ -19,7 +19,7 @@ export default function Sobre() {
             name: "Andre",
             age: "Eu sou Desenvolvedor Mobile, tenho 18 anos e moro em Campinas-SP.",
             image: require("../assets/andre.jpg"),
-            link: "",
+            link: "http://www.linkedin.com/in/andr%C3%A9-lucca-santos-63345934a",
             isLocalImage: true,
         },
         {

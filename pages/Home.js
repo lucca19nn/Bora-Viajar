@@ -12,16 +12,21 @@ export default function Home() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const postsUrl = 'http://10.88.195.35:3000/api/posts';
+                const postsUrl = `${process.env.EXPO_PUBLIC_API_URL}/posts`;
                 const [response] = await Promise.all([
                     fetch(postsUrl, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            'x-api-key': 'B0raV1@j@2025',
+                            'x-api-key': process.env.EXPO_PUBLIC_API_KEY,
                         },
                     }),
                 ]);
+
+                console.log(`Fetching posts from: ${postsUrl}`);
+                console.log(process.env.EXPO_PUBLIC_API_KEY);
+                
+                
 
                 const data = await response.json();
 
@@ -59,7 +64,4 @@ const styles = {
         flex: 1,
         width: "100%",
     },
-    verticalList: {
-        padding: 10,
-    }
 };

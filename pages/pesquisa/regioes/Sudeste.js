@@ -10,6 +10,7 @@ import {
     Linking,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const { width } = Dimensions.get("window");
 
@@ -21,12 +22,16 @@ export default function Nordeste() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(
-                    "http://10.88.199.170:3000/api/regions?region=Sudeste"
+                const response = await axios.get(
+                    "http://10.88.200.160:3000/api/regions?region=Sudeste",
+                    {
+                        headers: {
+                            "x-api-key": "B0raV1@j@2025"
+                        }
+                    }
                 );
-                const data = await response.json();
-                console.log("Dados recebidos:", data);
-                setEstados(data);
+                console.log("Dados recebidos:", response.data);
+                setEstados(response.data);
             } catch (error) {
                 console.error("Erro ao buscar dados:", error);
             } finally {
@@ -40,11 +45,11 @@ export default function Nordeste() {
     const renderItem = ({ item }) => (
         <View style={{ width, alignItems: "center" }}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri: `http://10.88.199.170:3000/uploads/${item.image}` }} style={styles.headerImage} />
+                <Image source={{ uri: `http://10.88.200.160:3000/uploads/${item.image}` }} style={styles.headerImage} />
                 <View style={styles.textOverlay}>
                     <Text style={styles.titleImage}>{item.name}</Text>
                     <Text style={styles.subtitle}>
-                        {item.state ? `${item.state} - ${item.id}` : ""}
+                        {item.state}
                     </Text>
                 </View>
             </View>

@@ -14,7 +14,11 @@ export default function Filtro() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://10.88.199.170:3000/api/news");
+        const response = await axios.get("http://10.88.200.160:3000/api/news", {
+          headers: {
+            "x-api-key": "B0raV1@j@2025"
+          }
+        });
         setData(response.data);
         console.log("Dados recebidos:", response.data);
       } catch (error) {
@@ -60,7 +64,7 @@ export default function Filtro() {
                 <Card
                   title={item.name}
                   description={item.place}
-                  image={`http://10.88.199.170:3000/uploads/${item.image}`}
+                  image={`http://10.88.200.160:3000/uploads/${item.image}`}
                   onPress={() => openModal(item)}
                 />
               )}
@@ -89,7 +93,7 @@ export default function Filtro() {
               <>
                 {modalData.image && (
                   <Image
-                    source={{ uri: `http://10.88.199.170:3000/uploads/${modalData.image}` }}
+                    source={{ uri: `http://10.88.200.160:3000/uploads/${modalData.image}` }}
                     style={styles.modalImage}
                   />
                 )}
@@ -112,7 +116,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 15,
+    marginTop: 20,
     paddingHorizontal: 10,
   },
   modalBackground: {

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import react, { useState, useEffect } from "react";
 import { View, SafeAreaView, FlatList, Dimensions, TextInput, Modal, Text, TouchableOpacity, Image } from "react-native";
 import Users from "../components/Users";
+import axios from "axios";
 
 const { width } = Dimensions.get("window");
 const cardWidth = width - 40;
@@ -12,38 +13,34 @@ export default function Pesquisa() {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                let url = "http://10.88.199.140:3000/api/users";
-                if (search) {
-                    url += `?name=${encodeURIComponent(search)}`;
-                }
-                const response = await fetch(
-                    url,
-                    {
-                        headers: {
-                            "x-api-key": "B0raV1@j@2025"
-                        }
-                    }
-                );
-                const data = await response.json();
-                setUsuarios(data);
-            } catch (error) {
-                console.error("Erro ao buscar dados:", error);
-            } finally {
-                setLoading(false);
+useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const url = "http://10.88.200.160:3000/api/users";
+            if (search) {
+                url += `?name=${encodeURIComponent(search)}`;
             }
-        };
+            const response = await axios.get(url, {
+                headers: {
+                    "x-api-key": "B0raV1@j@2025"
+                }
+            });
+            setUsuarios(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar dados:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        fetchData();
-    }, [search]);
+    fetchData();
+}, [search]);
 
     const renderItem = ({ item }) => (
         <View style={{ width, alignItems: "center" }}>
             <View style={styles.imageContainer}>
                 <Image
-                    source={{ uri: `http://10.88.199.170:3000/uploads/${item.photo}` }}
+                    source={{ uri: `http://10.88.200.160:3000/uploads/${item.photo}` }}
                     style={styles.headerImage}
                 />
                 <View style={styles.textOverlay}>
@@ -95,13 +92,12 @@ export default function Pesquisa() {
                         {selectedUser && (
                             <>
                                 <Image
-                                    source={{ uri: `http://10.88.199.170:3000/uploads/${selectedUser.photo}` }} style={styles.imageModal}
+                                    source={{ uri: `http://10.88.200.160:3000/uploads/${selectedUser.photo}` }} style={styles.imageModal}
                                 />
                                 <Text style={styles.titleModal}>{selectedUser.name}</Text>
-                                <Text style={styles.subtitleModal}>{selectedUser.email}</Text>
-                                <Text style={styles.subtitleModal}>{selectedUser.state}</Text>
-                                <Text style={styles.subtitleModal}>{selectedUser.city}</Text>
-                                <Text style={styles.subtitleModal}>{selectedUser.type_user}</Text>
+                                <Text style={styles.subtitleModal}>Estado: {selectedUser.state}</Text>
+                                <Text style={styles.subtitleModal}>Cidade: {selectedUser.city}</Text>
+                                <Text style={styles.subtitleModal}>Tipo de Usuário: {selectedUser.type_user}</Text>
                             </>
                         )}
                         <TouchableOpacity onPress={() => setModalVisible(false)}>
@@ -144,16 +140,17 @@ const styles = {
         alignItems: "center",
     },
     imageModal: {
-        width: 100, 
-        height: 100, 
-        borderRadius: 50, 
-        marginBottom: 20 ,
+        width: 120, 
+        height: 120, 
+        borderRadius: 60, 
+        marginBottom: 15 ,
     },
     titleModal: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: "bold",
         marginBottom: 10,
         color: "#25c0c0",
+        textAlign: "center",
     },
     subtitleModal: {
         fontSize: 16, 

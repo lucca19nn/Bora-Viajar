@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     subtitle: {
+        marginTop: 5,
         fontSize: 14,
         color: "#fff",
         textAlign: "center",

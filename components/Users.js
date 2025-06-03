@@ -5,7 +5,7 @@ export default function Users ({ name, email, photo, onPress }) {
 
     let imageSource;
     if (photo) {
-        imageSource = { uri: `http://10.88.199.140:3000/uploads/${photo}` };
+        imageSource = { uri: `http://10.88.200.160:3000/uploads/${photo}` };
     } else {
         imageSource = require("../assets/userProfile.jpg"); 
     }

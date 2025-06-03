@@ -5,13 +5,17 @@ const { width } = Dimensions.get('window');
 
 export default function Post({ post }) {
     console.log(post);
+
     const [isFollowing, setIsFollowing] = useState(false);
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
 
 
-    const userPhoto = post?.user?.photo || 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
-    const userName = post?.user?.name || 'Usuário';
+    const userPhoto = post?.photo
+        ? `http://10.88.195.35:3000/uploads/${post.photo}`
+        : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
+
+    const userName = post?.usuario || 'Usuário';
 
     const handleFollow = () => {
         setIsFollowing(!isFollowing);

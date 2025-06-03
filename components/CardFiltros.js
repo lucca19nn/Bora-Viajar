@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     padding: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.29)',
   },
   title: {
     fontSize: 18,

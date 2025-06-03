@@ -14,18 +14,18 @@ export default function Filtro() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://10.88.201.131:3000/api/news");
+        const response = await axios.get("http://10.88.199.170:3000/api/news");
         setData(response.data);
         console.log("Dados recebidos:", response.data);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
-        
       }
     };
     fetchData();
   }, []);
 
   const openModal = (item) => {
+    console.log("Abrindo modal com:", item);
     setModalData(item);
     setModalVisible(true);
   };
@@ -43,9 +43,6 @@ export default function Filtro() {
     { id: "5", title: "Sudeste", subtitle: "Veja mais...", image: "https://cdn.blablacar.com/wp-content/uploads/br/2024/06/05094038/rio-de-janeiro.webp", navigateTo: "Sudeste" },
   ];
 
-
-
-
   return (
     <View style={{ flex: 1 }}>
       <FlatList
@@ -53,21 +50,21 @@ export default function Filtro() {
         ListHeaderComponent={
           <>
             <Text style={styles.title}>Principais Notícias</Text>
-              <FlatList
-                data={data}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ paddingHorizontal: 10 }}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <Card
-                    title={item.name}
-                    description={item.place}
-                    image={item.image}
-                    onPress={() => openModal(item)}
-                  />  
-                )}
-              />
+            <FlatList
+              data={data}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 10 }}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => (
+                <Card
+                  title={item.name}
+                  description={item.place}
+                  image={`http://10.88.199.170:3000/uploads/${item.image}`}
+                  onPress={() => openModal(item)}
+                />
+              )}
+            />
             <Text style={styles.title}>Top destinos</Text>
           </>
         }
@@ -80,7 +77,7 @@ export default function Filtro() {
             title={item.title}
             description={item.subtitle}
             image={item.image}
-            onPress={() => navigation.navigate(item.navigateTo)} 
+            onPress={() => navigation.navigate(item.navigateTo)}
           />
         )}
       />
@@ -88,17 +85,22 @@ export default function Filtro() {
       <Modal visible={modalVisible} animationType="slide" transparent={true}>
         <View style={styles.modalBackground}>
           <View style={styles.modalContainer}>
-          {modalData && (
-                  <>
-                    <Image source={{ uri: modalData.image }} style={styles.modalImage} />
-                    <Text style={styles.modalTitle}>{modalData.name}</Text>
-                    <Text style={styles.modalSubtitle}>{modalData.text}</Text>
-
-                    <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-                      <Text style={styles.closeButtonText}>Fechar</Text>
-                    </TouchableOpacity>
-                  </>
+            {modalData && (
+              <>
+                {modalData.image && (
+                  <Image
+                    source={{ uri: `http://10.88.199.170:3000/uploads/${modalData.image}` }}
+                    style={styles.modalImage}
+                  />
                 )}
+                <Text style={styles.modalTitle}>{modalData.name}</Text>
+                <Text style={styles.modalSubtitle}>{modalData.text}</Text>
+
+                <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+                  <Text style={styles.closeButtonText}>Fechar</Text>
+                </TouchableOpacity>
+              </>
+            )}
           </View>
         </View>
       </Modal>
@@ -136,13 +138,15 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 10,
+    textAlign: "center",
   },
   modalSubtitle: {
     fontSize: 16,
     marginBottom: 20,
+    textAlign: "justify",
   },
   closeButton: {
-    backgroundColor: "#00bcd4",
+    backgroundColor: "#25c0c0",
     paddingVertical: 10,
     paddingHorizontal: 25,
     borderRadius: 8,

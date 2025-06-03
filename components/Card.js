@@ -15,9 +15,9 @@ const Card = ({ title, description, image, onPress }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: 150,
-        height: 200, 
-        backgroundColor: "#00bcd4",
+        width: 180,
+        height: 230, 
+        backgroundColor: "#25c0c0",
         borderRadius: 10,
         marginVertical: 8,
         marginHorizontal: 8, 
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: "100%",
-        height: 100,
+        height: 120,
     },
     textContainer: {
         padding: 10,

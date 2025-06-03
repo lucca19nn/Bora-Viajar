@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     FlatList,
@@ -6,170 +6,80 @@ import {
     Image,
     TouchableOpacity,
     Dimensions,
+    ActivityIndicator,
+    Linking,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
 
-const estados = [
-    {
-        id: "sp",
-        nome: "São Paulo",
-        capital: "São Paulo",
-        imagem:
-            "https://jpimg.com.br/uploads/2024/01/aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade.jpg",
-        descricao:
-            "São Paulo é o estado mais populoso do Brasil, conhecido por sua capital cosmopolita, praias no litoral, serras e cidades históricas.",
-        pontos: [
-            {
-                id: "sp-1",
-                titulo: "Avenida Paulista",
-                imagem:
-                    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/99/d8/ed/paulista.jpg?w=1200&h=1200&s=1",
-            },
-            {
-                id: "sp-2",
-                titulo: "Parque Ibirapuera",
-                imagem:
-                    "https://www.quintoandar.com.br/guias/wp-content/uploads/2023/08/o-que-fazer-no-parque-ibirapuera.jpeg",
-            },
-            {
-                id: "sp-3",
-                titulo: "Campos do Jordão",
-                imagem:
-                    "https://www.essemundoenosso.com.br/wp-content/uploads/2017/12/Quando-ir-pra-Campos-do-Jordao-Destaque.jpg",
-            },
-        ],
-    },
-    {
-        id: "rj",
-        nome: "Rio de Janeiro",
-        capital: "Rio de Janeiro",
-        imagem:
-            "https://blog.123milhas.com/wp-content/uploads/2022/12/conheca-os-lugares-com-as-melhores-vistas-do-rio-de-janeiro-conexao123.jpg",
-        descricao:
-            "O Rio de Janeiro é famoso por suas praias, o Cristo Redentor, o Pão de Açúcar e o Carnaval. Possui belas cidades serranas e litorâneas.",
-        pontos: [
-            {
-                id: "rj-1",
-                titulo: "Cristo Redentor",
-                imagem:
-                    "https://media.gazetadopovo.com.br/2011/10/427e09b1459e99a981dcd583fc82618e-gpLarge.jpg",
-            },
-            {
-                id: "rj-2",
-                titulo: "Praia de Copacabana",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSM9g-MeuXNd9kAKlSsoOG5x4789FHVCg62A&s",
-            },
-            {
-                id: "rj-3",
-                titulo: "Pão de Açúcar",
-                imagem:
-                    "https://riodejaneiro.tur.br/wp-content/uploads/2024/08/pao-de-acucar-joao-ricardo-januzzi-1024x683.jpg",
-            },
-        ],
-    },
-    {
-        id: "mg",
-        nome: "Minas Gerais",
-        capital: "Belo Horizonte",
-        imagem:
-            "https://viagemeturismo.abril.com.br/wp-content/uploads/2011/09/GettyImages-1164542668.jpg",
-        descricao:
-            "Minas Gerais é conhecida por suas cidades históricas, culinária típica, montanhas e cachoeiras. Belo Horizonte é a capital do estado.",
-        pontos: [
-            {
-                id: "mg-1",
-                titulo: "Ouro Preto",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcBFlzscTSMbGSHhHPecFDt0jjPOqHe5D3TQ&s",
-            },
-            {
-                id: "mg-2",
-                titulo: "Serra do Cipó",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHPdwEOBCEfuM6JKy0SVjJ_mwvUlWpH6Xjbg&s",
-            },
-            {
-                id: "mg-3",
-                titulo: "Inhotim",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYdKUKfVAYxqiMa2JpHh4YsEiQZOaeV_0mYQ&s",
-            },
-        ],
-    },
-    {
-        id: "es",
-        nome: "Espírito Santo",
-        capital: "Vitória",
-        imagem:
-            "https://blog.123milhas.com/wp-content/uploads/2022/09/vitoria-es-curiosidades-sobre-a-capital-do-espirito-santo-conexao123-1.jpg",
-        descricao:
-            "O Espírito Santo possui belas praias, montanhas e cultura capixaba. Vitória, a capital, é conhecida por sua qualidade de vida e gastronomia.",
-        pontos: [
-            {
-                id: "es-1",
-                titulo: "Praia da Costa",
-                imagem:
-                    "https://images.ctfassets.net/uzue8dgm4ubt/4YIFzd2Gj3d5krPAvW4xul/82e2c602a7b691855fbc540b3e8fcdcb/Praia_da_Costa_Vilha_Velha.jpg",
-            },
-            {
-                id: "es-2",
-                titulo: "Convento da Penha",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdeohWonpNk4JWiobMH2JF8xJk0pgTty61ZA&s",
-            },
-            {
-                id: "es-3",
-                titulo: "Domingos Martins",
-                imagem:
-                    "https://www.vaidepromo.com.br/blog/wp-content/uploads/2024/01/Onde-fica-Domingos-Martins-1024x682.jpg",
-            },
-        ],
-    },
-];
-
-export default function Sudeste() {
+export default function Nordeste() {
     const navigation = useNavigation();
+    const [estados, setEstados] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    "http://10.88.199.170:3000/api/regions?region=Sudeste"
+                );
+                const data = await response.json();
+                console.log("Dados recebidos:", data);
+                setEstados(data);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const renderItem = ({ item }) => (
         <View style={{ width, alignItems: "center" }}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri: item.imagem }} style={styles.headerImage} />
+                <Image source={{ uri: `http://10.88.199.170:3000/uploads/${item.image}` }} style={styles.headerImage} />
                 <View style={styles.textOverlay}>
-                    <Text style={styles.titleImage}>{item.nome}</Text>
+                    <Text style={styles.titleImage}>{item.name}</Text>
                     <Text style={styles.subtitle}>
-                        {item.capital ? `${item.capital} - ${item.id.toUpperCase()}` : ""}
+                        {item.state ? `${item.state} - ${item.id}` : ""}
                     </Text>
                 </View>
             </View>
 
             <View style={styles.descricaoContainer}>
-                <Text style={styles.descricao}>{item.descricao}</Text>
+                <Text style={styles.descricao}>{item.text}</Text>
             </View>
 
-            <View style={styles.pontosContainer}>
-                {item.pontos.map((ponto) => (
-                    <View key={ponto.id} style={styles.pontoBox}>
-                        <Image source={{ uri: ponto.imagem }} style={styles.pontoImage} />
-                        <Text style={styles.pontoTitulo}>{ponto.titulo}</Text>
-                    </View>
-                ))}
-            </View>
+            {item.links?.trim() && (
+                <View style={styles.pontosContainer}>
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL(item.links)}
+                        style={styles.buttonLink}
+                    >
+                        <Text style={styles.textLink}>Saiba mais 🗺️</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
         </View>
     );
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={estados}
-                keyExtractor={(item) => item.id}
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={false}
-                renderItem={renderItem}
-            />
+            {loading ? (
+                <ActivityIndicator size="large" color="#00bcd4" style={{ marginTop: 20 }} />
+            ) : (
+                <FlatList
+                    data={estados}
+                    keyExtractor={(item) => item.id}
+                    horizontal
+                    pagingEnabled
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={renderItem}
+                />
+            )}
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => navigation.goBack()}
@@ -190,7 +100,7 @@ const styles = {
     },
     headerImage: {
         width: width,
-        height: 350,
+        height: 550,
         resizeMode: "cover",
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
@@ -212,6 +122,7 @@ const styles = {
         flexDirection: "row",
         justifyContent: "center",
         marginTop: 20,
+        flexWrap: "wrap",
         gap: 16,
     },
     pontoBox: {
@@ -243,6 +154,21 @@ const styles = {
         fontSize: 16,
         fontWeight: "bold",
     },
+    buttonLink: {
+        backgroundColor: "#ffff",
+        borderColor: "#25c0c0",
+        borderWidth: 2,
+        color: "#25c0c0",
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 25,
+        alignItems: "center",
+    },
+    textLink: {
+        color: "#25c0c0",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
     descricaoContainer: {
         paddingHorizontal: 20,
         marginTop: 25,
@@ -251,7 +177,7 @@ const styles = {
     descricao: {
         fontSize: 17,
         color: "#333",
-        textAlign: "justify", 
+        textAlign: "justify",
         fontWeight: "500",
     },
     subtitle: {

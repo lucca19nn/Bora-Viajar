@@ -21,7 +21,7 @@ export default function CentroOeste() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://10.88.201.131:3000/api/regions?region=Centro-Oeste"
+                    "http://10.88.199.170:3000/api/regions?region=Centro-Oeste"
                 );
                 const data = await response.json();
                 console.log("Dados recebidos:", data);
@@ -40,7 +40,7 @@ export default function CentroOeste() {
         <View style={{ width, alignItems: "center" }}>
             <View style={styles.imageContainer}>
                 <Image
-                    source={{ uri: `http://10.88.201.131:3000/uploads/${item.image}` }}
+                    source={{ uri: `http://10.88.199.170:3000/uploads/${item.image}` }}
                     style={styles.headerImage}
                 />
                 <View style={styles.textOverlay}>
@@ -55,14 +55,16 @@ export default function CentroOeste() {
                 <Text style={styles.descricao}>{item.text}</Text>
             </View>
 
-            <View style={styles.pontosContainer}>
-                <TouchableOpacity
-                    onPress={() => Linking.openURL(item.links)}
-                    style={styles.button}
-                >
-                    <Text style={styles.buttonText}>Ver mais no TripAdvisor</Text>
-                </TouchableOpacity>
-            </View>
+            {item.links?.trim() && (
+                <View style={styles.pontosContainer}>
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL(item.links)}
+                        style={styles.buttonLink}
+                    >
+                        <Text style={styles.textLink}>Saiba mais 🗺️</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
         </View>
     );
 
@@ -100,7 +102,7 @@ const styles = {
     },
     headerImage: {
         width: width,
-        height: 350,
+        height: 550,
         resizeMode: "cover",
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
@@ -139,11 +141,27 @@ const styles = {
         marginTop: 20,
         alignItems: "center",
     },
+    buttonLink: {
+        backgroundColor: "#ffff",
+        borderColor: "#25c0c0",
+        borderWidth: 2,
+        color: "#25c0c0",
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 25,
+        alignItems: "center",
+    },
+    textLink: {
+        color: "#25c0c0",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
     button: {
-        backgroundColor: "#00bcd4",
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        borderRadius: 8,
+        backgroundColor: "#25c0c0",
+        padding: 10,
+        margin: 20,
+        borderRadius: 5,
+        alignItems: "center",
     },
     buttonText: {
         color: "#fff",

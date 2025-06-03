@@ -47,7 +47,7 @@ export default function TabNavigation() {
                     backgroundColor: "#ffffff",
                     height: 110,
                     borderBottomWidth: 2,
-                    borderBottomColor: "#25C0C0",
+                    borderBottomColor: "#25c0c0",
                 },
                 headerTitleAlign: "center",
                 headerTintColor: "#f7f7f7",
@@ -58,7 +58,7 @@ export default function TabNavigation() {
                 },
                 tabBarShowLabel: false,
                 tabBarStyle: {
-                    backgroundColor: "#25C0C0",
+                    backgroundColor: "#25c0c0",
                     position: "fixed",
                     bottom: 0,
                     left: 0,

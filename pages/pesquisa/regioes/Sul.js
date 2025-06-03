@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     FlatList,
@@ -6,141 +6,87 @@ import {
     Image,
     TouchableOpacity,
     Dimensions,
+    ActivityIndicator,
+    Linking,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
 
-const estados = [
-    {
-        id: "pr",
-        nome: "Paraná",
-        capital: "Curitiba",
-        imagem:
-            "https://www.farejaviagens.com.br/wp-content/uploads/2024/07/Passeio-Publico-Curitiba-Foto-Prefeitura-de-Curitiba.jpg",
-        descricao:
-            "O Paraná é conhecido pelas Cataratas do Iguaçu, uma das maiores quedas d'água do mundo, além de belas cidades como Curitiba e paisagens naturais impressionantes.",
-        pontos: [
-            {
-                id: "pr-1",
-                titulo: "Cataratas do Iguaçu",
-                imagem:
-                    "https://www.cnnbrasil.com.br/viagemegastronomia/wp-content/uploads/sites/5/2021/05/cataratas.jpg?w=1200&h=900&crop=1",
-            },
-            {
-                id: "pr-2",
-                titulo: "Jardim Botânico de Curitiba",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl6Qzn7Ysncry8WpXc6GVtEe_S2EgPFtdVYg&s",
-            },
-            {
-                id: "pr-3",
-                titulo: "Ilha do Mel",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ8Sb2TS5QpcddKPM4bePTub6NU6ID90YhFw&s",
-            },
-        ],
-    },
-    {
-        id: "sc",
-        nome: "Santa Catarina",
-        capital: "Florianópolis",
-        imagem:
-            "https://upload.wikimedia.org/wikipedia/commons/0/09/Morro_da_Cruz%2C_Florian%C3%B3polis_-_SC%2C_Brazil_-_panoramio_%28cropped%29.jpg",
-        descricao:
-            "Santa Catarina é famosa por suas belas praias, cidades históricas e festas tradicionais. Florianópolis, a capital, é conhecida como a Ilha da Magia.",
-        pontos: [
-            {
-                id: "sc-1",
-                titulo: "Praia de Jurerê",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQRyrGBQHph1dH66EK-vzRj0DB5b2MO7IxPg&s",
-            },
-            {
-                id: "sc-2",
-                titulo: "Beto Carrero World",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2ajdyI0iVScd5PrJxWDGtU1c1AnHUfahx-A&s",
-            },
-            {
-                id: "sc-3",
-                titulo: "Serra do Rio do Rastro",
-                imagem:
-                    "https://static.wixstatic.com/media/69eb05_2687665295f446fe86a085ba293f1bdd~mv2.jpg/v1/fill/w_560,h_374,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/69eb05_2687665295f446fe86a085ba293f1bdd~mv2.jpg",
-            },
-        ],
-    },
-    {
-        id: "rs",
-        nome: "Rio Grande do Sul",
-        capital: "Porto Alegre",
-        imagem:
-            "https://www.matinaljornalismo.com.br/wp-content/uploads/2022/03/vista-aerea-porto-alegre.jpeg",
-        descricao:
-            "O Rio Grande do Sul destaca-se pela cultura gaúcha, vinícolas, belas serras e cidades turísticas como Gramado e Canela.",
-        pontos: [
-            {
-                id: "rs-1",
-                titulo: "Gramado",
-                imagem:
-                    "https://hoteisfioreze.com.br/wp-content/uploads/2020/09/6-pontos-tur%C3%ADsticos-de-Gramado-imperd%C3%ADveis.jpg",
-            },
-            {
-                id: "rs-2",
-                titulo: "Cânion Itaimbezinho",
-                imagem:
-                    "https://cdn.api.wine-locals.com/vivars/images/small_large_itaimbezinho_716814ce17.webp",
-            },
-            {
-                id: "rs-3",
-                titulo: "Vale dos Vinhedos",
-                imagem:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsoeuYDo3QQRHnKVDHR2_udwHZTfirH-hO4A&s",
-            },
-        ],
-    },
-];
-
-export default function Sul() {
+export default function Nordeste() {
     const navigation = useNavigation();
+    const [estados, setEstados] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    "http://10.88.199.170:3000/api/regions?region=Sul"
+                );
+                const data = await response.json();
+                console.log("Dados recebidos:", data);
+                setEstados(data);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const renderItem = ({ item }) => (
         <View style={{ width, alignItems: "center" }}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri: item.imagem }} style={styles.headerImage} />
+                <Image
+                    source={{ uri: `http://10.88.199.170:3000/uploads/${item.image}` }}
+                    style={styles.headerImage}
+                />
                 <View style={styles.textOverlay}>
-                    <Text style={styles.titleImage}>{item.nome}</Text>
+                    <Text style={styles.titleImage}>{item.name}</Text>
                     <Text style={styles.subtitle}>
-                        {item.capital ? `${item.capital} - ${item.id.toUpperCase()}` : ""}
+                        {item.state ? `${item.state} - ${item.id}` : ""}
                     </Text>
                 </View>
             </View>
 
             <View style={styles.descricaoContainer}>
-                <Text style={styles.descricao}>{item.descricao}</Text>
+                <Text style={styles.descricao}>{item.text}</Text>
             </View>
 
-            <View style={styles.pontosContainer}>
-                {item.pontos.map((ponto) => (
-                    <View key={ponto.id} style={styles.pontoBox}>
-                        <Image source={{ uri: ponto.imagem }} style={styles.pontoImage} />
-                        <Text style={styles.pontoTitulo}>{ponto.titulo}</Text>
-                    </View>
-                ))}
-            </View>
+            {item.links?.trim() && (
+                <View style={styles.pontosContainer}>
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL(item.links)}
+                        style={styles.buttonLink}
+                    >
+                        <Text style={styles.textLink}>Saiba mais 🗺️</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
         </View>
     );
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={estados}
-                keyExtractor={(item) => item.id}
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={false}
-                renderItem={renderItem}
-            />
+            {loading ? (
+                <ActivityIndicator
+                    size="large"
+                    color="#00bcd4"
+                    style={{ marginTop: 20 }}
+                />
+            ) : (
+                <FlatList
+                    data={estados}
+                    keyExtractor={(item) => item.id}
+                    horizontal
+                    pagingEnabled
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={renderItem}
+                />
+            )}
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => navigation.goBack()}
@@ -161,7 +107,7 @@ const styles = {
     },
     headerImage: {
         width: width,
-        height: 350,
+        height: 550,
         resizeMode: "cover",
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40,
@@ -183,6 +129,7 @@ const styles = {
         flexDirection: "row",
         justifyContent: "center",
         marginTop: 20,
+        flexWrap: "wrap",
         gap: 16,
     },
     pontoBox: {
@@ -214,6 +161,21 @@ const styles = {
         fontSize: 16,
         fontWeight: "bold",
     },
+    buttonLink: {
+        backgroundColor: "#ffff",
+        borderColor: "#25c0c0",
+        borderWidth: 2,
+        color: "#25c0c0",
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 25,
+        alignItems: "center",
+    },
+    textLink: {
+        color: "#25c0c0",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
     descricaoContainer: {
         paddingHorizontal: 20,
         marginTop: 25,
@@ -222,7 +184,7 @@ const styles = {
     descricao: {
         fontSize: 17,
         color: "#333",
-        textAlign: "justify", 
+        textAlign: "justify",
         fontWeight: "500",
     },
     subtitle: {

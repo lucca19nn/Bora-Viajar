@@ -46,7 +46,7 @@ export default function TabNavigation() {
                 ),
                 headerStyle: {
                     backgroundColor: "#ffffff",
-                    height: 110,
+                    height: 115,
                     borderBottomWidth: 2,
                     borderBottomColor: "#25c0c0",
                 },

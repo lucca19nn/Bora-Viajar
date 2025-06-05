@@ -23,10 +23,10 @@ export default function Nordeste() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "http://10.88.200.160:3000/api/regions?region=Norte",
+                    `${process.env.EXPO_PUBLIC_API_URL}/regions?region=Norte`,
                     {
                         headers: {
-                            "x-api-key": "B0raV1@j@2025"
+                            "x-api-key": process.env.EXPO_PUBLIC_API_KEY
                         }
                     }
                 );
@@ -45,7 +45,7 @@ export default function Nordeste() {
     const renderItem = ({ item }) => (
         <View style={{ width, alignItems: "center" }}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri: `http://10.88.200.160:3000/uploads/${item.image}` }} style={styles.headerImage} />
+                <Image source={{ uri: `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.image}` }} style={styles.headerImage} />
                 <View style={styles.textOverlay}>
                     <Text style={styles.titleImage}>{item.name}</Text>
                     <Text style={styles.subtitle}>

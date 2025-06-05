@@ -16,13 +16,13 @@ export default function Pesquisa() {
 useEffect(() => {
     const fetchData = async () => {
         try {
-            const url = "http://10.88.200.160:3000/api/users";
+            const url = `${process.env.EXPO_PUBLIC_API_URL}/users`;
             if (search) {
                 url += `?name=${encodeURIComponent(search)}`;
             }
             const response = await axios.get(url, {
                 headers: {
-                    "x-api-key": "B0raV1@j@2025"
+                    "x-api-key": process.env.EXPO_PUBLIC_API_KEY
                 }
             });
             setUsuarios(response.data);
@@ -40,7 +40,7 @@ useEffect(() => {
         <View style={{ width, alignItems: "center" }}>
             <View style={styles.imageContainer}>
                 <Image
-                    source={{ uri: `http://10.88.200.160:3000/uploads/${item.photo}` }}
+                    source={{ uri: `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.photo}` }}
                     style={styles.headerImage}
                 />
                 <View style={styles.textOverlay}>
@@ -52,6 +52,10 @@ useEffect(() => {
             </View>
         </View>
     );
+
+        const userPhoto = selectedUser?.foto
+        ? `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${selectedUser.photo}`
+        : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
 
     return (
         <SafeAreaView style={styles.container}>
@@ -92,7 +96,7 @@ useEffect(() => {
                         {selectedUser && (
                             <>
                                 <Image
-                                    source={{ uri: `http://10.88.200.160:3000/uploads/${selectedUser.photo}` }} style={styles.imageModal}
+                                    source={{ uri: userPhoto  }} style={styles.imageModal}
                                 />
                                 <Text style={styles.titleModal}>{selectedUser.name}</Text>
                                 <Text style={styles.subtitleModal}>Estado: {selectedUser.state}</Text>

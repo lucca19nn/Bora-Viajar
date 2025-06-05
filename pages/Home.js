@@ -23,11 +23,6 @@ export default function Home() {
                     }),
                 ]);
 
-                console.log(`Fetching posts from: ${postsUrl}`);
-                console.log(process.env.EXPO_PUBLIC_API_KEY);
-                
-                
-
                 const data = await response.json();
 
                 setPosts(data);

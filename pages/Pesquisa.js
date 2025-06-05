@@ -1,6 +1,7 @@
 import react, { useState, useEffect } from "react";
 import { View, SafeAreaView, FlatList, Dimensions, TextInput, Modal, Text, TouchableOpacity, Image } from "react-native";
 import Users from "../components/Users";
+import Card from "../components/Card";
 import axios from "axios";
 
 const { width } = Dimensions.get("window");
@@ -98,6 +99,8 @@ useEffect(() => {
                                 <Text style={styles.subtitleModal}>Estado: {selectedUser.state}</Text>
                                 <Text style={styles.subtitleModal}>Cidade: {selectedUser.city}</Text>
                                 <Text style={styles.subtitleModal}>Tipo de Usuário: {selectedUser.type_user}</Text>
+                                <Text style={styles.titleModal}>Posts:</Text>
+                                <Card />
                             </>
                         )}
                         <TouchableOpacity onPress={() => setModalVisible(false)}>

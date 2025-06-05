@@ -17,12 +17,14 @@ export default function Post({ post }) {
         ? `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${post.foto}`
         : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
 
-const getCommentUserPhoto = (item) => {
-  return item.fotoComentario
-    ? `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.fotoComentario}`
-    : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
-};
-
+        const getCommentUserPhoto = (item) => {
+            if (item?.foto_comentario) {
+                return `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.foto_comentario}`;
+                
+            }
+            return 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
+        };
+        
     const userName = post?.usuario || 'Usuário';
     const userHandle = post?.user?.username ? `@${post.user.username}` : '@username';
 
@@ -52,7 +54,8 @@ const getCommentUserPhoto = (item) => {
                 },
             });
             const data = await response.json();
-            // Adapta para array
+            console.log('RESPOSTA DA API:', JSON.stringify(data, null, 2));
+
             setCommentsList(data.comment ? [data.comment] : []);
         } catch (e) {
             setCommentsList([]);
@@ -64,7 +67,6 @@ const getCommentUserPhoto = (item) => {
 
     return (
         <View style={styles.container}>
-            {/* Header */}
             <View style={styles.header}>
                 <Image style={styles.profileImage} source={{ uri: userPhoto }} />
                 <View style={styles.userDetails}>
@@ -118,7 +120,6 @@ const getCommentUserPhoto = (item) => {
                     />
                 </TouchableOpacity>
             </View>
-            {/* Modal de comentários */}
             <Modal
                 visible={commentModalVisible}
                 animationType="slide"
@@ -132,20 +133,21 @@ const getCommentUserPhoto = (item) => {
                             <Text>Carregando comentários...</Text>
                         ) : (
                             <FlatList
-                                data={commentsList}
-                                keyExtractor={(item, idx) => idx.toString()}
-                                renderItem={({ item }) => (
-                                    <View style={styles.commentItem}>
+                            data={commentsList}
+                            keyExtractor={(item, idx) => idx.toString()}
+                            renderItem={({ item }) => (
+                                <View style={styles.commentItem}>
+                                    <View style={styles.userComment}>
                                         <Image
-                                            style={styles.profileImage}
+                                            style={styles.profileImageComment}
                                             source={{ uri: getCommentUserPhoto(item) }}
                                         />
-                                        <Text style={styles.commentText}>
-                                            <Text style={{ fontWeight: 'bold' }}>{item.usuario || 'Usuário'}: </Text>
-                                            {item.comentario}
-                                        </Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{item.usuario || 'Usuário'} </Text>
                                     </View>
-                                )}
+                                    <Text style={styles.commentText}> {item.comentario} </Text>
+                                </View>
+                            )}
+                        
                                 style={{ maxHeight: 300 }}
                                 ListEmptyComponent={<Text style={{ color: '#aaa' }}>Nenhum comentário ainda.</Text>}
                             />
@@ -269,6 +271,17 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: '#eee',
         paddingVertical: 7,
+    },
+    userComment: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 5,
+    },
+    profileImageComment: {
+        width: 35,
+        height: 35,
+        borderRadius: 15,
+        marginRight: 10,
     },
     commentText: {
         fontSize: 15,

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, StyleSheet, Modal, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Card from "../components/Card";
-import CardFiltro from "../components/CardFiltros";
 import axios from "axios";
 
 export default function Filtro() {
@@ -14,7 +13,7 @@ export default function Filtro() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://10.88.200.160:3000/api/news", {
+        const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/news`, {
           headers: {
             "x-api-key": "B0raV1@j@2025"
           }
@@ -64,7 +63,7 @@ export default function Filtro() {
                 <Card
                   title={item.name}
                   description={item.place}
-                  image={`http://10.88.200.160:3000/uploads/${item.image}`}
+                  image={`http://10.88.199.174:3000/uploads/${item.image}`}
                   onPress={() => openModal(item)}
                 />
               )}
@@ -93,7 +92,7 @@ export default function Filtro() {
               <>
                 {modalData.image && (
                   <Image
-                    source={{ uri: `http://10.88.200.160:3000/uploads/${modalData.image}` }}
+                    source={{ uri: `http://10.88.199.174:3000/uploads/${modalData.image}` }}
                     style={styles.modalImage}
                   />
                 )}

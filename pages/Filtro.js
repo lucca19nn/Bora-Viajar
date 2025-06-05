@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, StyleSheet, Modal, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Card from "../components/Card";
+import CardFiltros from "../components/CardFiltros";
 import axios from "axios";
 
 export default function Filtro() {
@@ -15,7 +16,7 @@ export default function Filtro() {
       try {
         const response = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/news`, {
           headers: {
-            "x-api-key": "B0raV1@j@2025"
+            "x-api-key": process.env.EXPO_PUBLIC_API_KEY,
           }
         });
         setData(response.data);
@@ -76,7 +77,7 @@ export default function Filtro() {
         nestedScrollEnabled={true}
         contentContainerStyle={{ paddingBottom: 20 }}
         renderItem={({ item }) => (
-          <CardFiltro
+          <CardFiltros
             title={item.title}
             description={item.subtitle}
             image={item.image}

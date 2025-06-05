@@ -1,7 +1,7 @@
 import react, { useState, useEffect } from "react";
 import { View, SafeAreaView, FlatList, Dimensions, TextInput, Modal, Text, TouchableOpacity, Image } from "react-native";
 import Users from "../components/Users";
-import Card from "../components/Card";
+import PostPesquisa from "../components/PostPesquisa";
 import axios from "axios";
 
 const { width } = Dimensions.get("window");
@@ -9,33 +9,56 @@ const cardWidth = width - 40;
 
 export default function Pesquisa() {
     const [usuarios, setUsuarios] = useState([]);
+    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
 
-useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const url = `${process.env.EXPO_PUBLIC_API_URL}/users`;
-            if (search) {
-                url += `?name=${encodeURIComponent(search)}`;
-            }
-            const response = await axios.get(url, {
-                headers: {
-                    "x-api-key": process.env.EXPO_PUBLIC_API_KEY
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = `${process.env.EXPO_PUBLIC_API_URL}/users`;
+                if (search) {
+                    url += `?name=${encodeURIComponent(search)}`;
                 }
+                const response = await axios.get(url, {
+                    headers: {
+                        "x-api-key": process.env.EXPO_PUBLIC_API_KEY
+                    }
+                });
+                setUsuarios(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [search]);
+
+    const fetchPostsByUser = async (userId) => {
+        try {
+            setLoading(true);
+            const postsUrl = `${process.env.EXPO_PUBLIC_API_URL}/posts/${userId}`;
+            const response = await fetch(postsUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': process.env.EXPO_PUBLIC_API_KEY,
+                },
             });
-            setUsuarios(response.data);
+            const data = await response.json();
+            setPosts(data);
         } catch (error) {
-            console.error("Erro ao buscar dados:", error);
+            console.error(error);
+            setPosts([]);
         } finally {
             setLoading(false);
         }
     };
-
-    fetchData();
-}, [search]);
 
     const renderItem = ({ item }) => (
         <View style={{ width, alignItems: "center" }}>
@@ -53,6 +76,11 @@ useEffect(() => {
             </View>
         </View>
     );
+
+    const closeModal = () => {
+        setModalVisible(false);
+        setPosts([]);
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -82,11 +110,11 @@ useEffect(() => {
                     </View>
                 )}
             />
-            <Modal
+           <Modal
                 visible={modalVisible}
                 transparent={true}
                 animationType="slide"
-                onRequestClose={() => setModalVisible(false)}
+                onRequestClose={closeModal}
             >
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContent}>
@@ -100,11 +128,25 @@ useEffect(() => {
                                 <Text style={styles.subtitleModal}>Cidade: {selectedUser.city}</Text>
                                 <Text style={styles.subtitleModal}>Tipo de Usuário: {selectedUser.type_user}</Text>
                                 <Text style={styles.titleModal}>Posts:</Text>
-                                <Card />
+                                <FlatList
+                                    style={styles.verticalList}
+                                    data={posts}
+                                    showsVerticalScrollIndicator={true}
+                                    keyExtractor={(item) => item.id?.toString()}
+                                    renderItem={({ item }) => (
+                                        <View style={[{ width: cardWidth }]}>
+                                            <PostPesquisa post={item} />
+                                        </View>
+                                    )}
+                                    ListEmptyComponent={loading ? <View /> : <View><Text>Nenhum post encontrado</Text></View>}
+                                />
                             </>
                         )}
-                        <TouchableOpacity onPress={() => setModalVisible(false)}>
-                            <Text style={styles.button}>Fechar</Text>
+                        <TouchableOpacity
+                            style={styles.closeButton}
+                            onPress={closeModal}
+                        >
+                            <Text style={{ color: '#25C0C0', fontWeight: 'bold' }}>Fechar</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -143,10 +185,10 @@ const styles = {
         alignItems: "center",
     },
     imageModal: {
-        width: 120, 
-        height: 120, 
-        borderRadius: 60, 
-        marginBottom: 15 ,
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        marginBottom: 15,
     },
     titleModal: {
         fontSize: 22,
@@ -156,7 +198,7 @@ const styles = {
         textAlign: "center",
     },
     subtitleModal: {
-        fontSize: 16, 
+        fontSize: 16,
         marginBottom: 10,
     },
     button: {

@@ -53,10 +53,6 @@ useEffect(() => {
         </View>
     );
 
-        const userPhoto = selectedUser?.foto
-        ? `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${selectedUser.photo}`
-        : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
-
     return (
         <SafeAreaView style={styles.container}>
             <TextInput
@@ -96,7 +92,7 @@ useEffect(() => {
                         {selectedUser && (
                             <>
                                 <Image
-                                    source={{ uri: userPhoto  }} style={styles.imageModal}
+                                    source={{ uri: `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${selectedUser.photo}` }} style={styles.imageModal}
                                 />
                                 <Text style={styles.titleModal}>{selectedUser.name}</Text>
                                 <Text style={styles.subtitleModal}>Estado: {selectedUser.state}</Text>

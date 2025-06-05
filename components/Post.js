@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Modal, FlatList } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+
 const { width } = Dimensions.get('window');
 
 export default function Post({ post }) {
@@ -16,40 +17,59 @@ export default function Post({ post }) {
         ? `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${post.foto}`
         : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
 
-    const userName = post?.usuario || 'Usuário';
+const getCommentUserPhoto = (item) => {
+  return item.fotoComentario
+    ? `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.fotoComentario}`
+    : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
+};
 
-    const handleFollow = () => setIsFollowing(!isFollowing);
-    const handleLike = () => setLiked(!liked);
+    const userName = post?.usuario || 'Usuário';
+    const userHandle = post?.user?.username ? `@${post.user.username}` : '@username';
+
+    const handleFollow = () => setIsFollowing((prev) => !prev);
+    const handleLike = () => setLiked((prev) => !prev);
+    const handleBookmark = () => setBookmarked((prev) => !prev);
 
     const openComments = async () => {
         setCommentModalVisible(true);
         setLoadingComments(true);
-        try {
-            const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/comments/:id${post.id}`);
-            console.log('Comments response:', response);
-            console.log('Comments URL:', post);
-            console.log(post.id);
 
+        const postId = post.id;
+
+        if (!postId) {
+            setCommentsList([]);
+            setLoadingComments(false);
+            return;
+        }
+
+        try {
+            const url = `${process.env.EXPO_PUBLIC_API_URL}/comments/${postId}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': process.env.EXPO_PUBLIC_API_KEY,
+                },
+            });
             const data = await response.json();
-            setCommentsList(data);
+            // Adapta para array
+            setCommentsList(data.comment ? [data.comment] : []);
         } catch (e) {
             setCommentsList([]);
         }
         setLoadingComments(false);
     };
 
+    const closeComments = () => setCommentModalVisible(false);
+
     return (
         <View style={styles.container}>
+            {/* Header */}
             <View style={styles.header}>
-                <Image
-                    style={styles.profileImage}
-                    source={{ uri: userPhoto }}
-                />
+                <Image style={styles.profileImage} source={{ uri: userPhoto }} />
                 <View style={styles.userDetails}>
                     <Text style={styles.userName}>{userName}</Text>
-                    <Text style={styles.userHandle}>
-                        {post?.user?.username ? '@' + post.user.username : '@username'}
-                    </Text>
+                    <Text style={styles.userHandle}>{userHandle}</Text>
                 </View>
                 <TouchableOpacity
                     style={[
@@ -63,22 +83,21 @@ export default function Post({ post }) {
                     </Text>
                 </TouchableOpacity>
             </View>
+            {/* Conteúdo do post */}
             <Text style={styles.postContent}>
-                {post?.description || "No description available"}
+                {post?.description || "Sem descrição disponível"}
             </Text>
             {post?.tag && (
                 <TouchableOpacity style={styles.alertButton}>
-                    <Text style={styles.alertButtonText}>{post?.tag}</Text>
+                    <Text style={styles.alertButtonText}>{post.tag}</Text>
                 </TouchableOpacity>
             )}
-            {post?.image ? (
+            {post?.image && (
                 <View style={styles.imagesContainer}>
-                    <Image
-                        style={styles.postImage}
-                        source={{ uri: post?.image }}
-                    />
+                    <Image style={styles.postImage} source={{ uri: post.image }} />
                 </View>
-            ) : null}
+            )}
+            {/* Ícones */}
             <View style={styles.iconContainer}>
                 <TouchableOpacity onPress={handleLike}>
                     <FontAwesome
@@ -91,7 +110,7 @@ export default function Post({ post }) {
                     <FontAwesome name="comment-o" size={24} color="black" />
                 </TouchableOpacity>
                 <FontAwesome name="share" size={24} color="black" />
-                <TouchableOpacity onPress={() => setBookmarked(!bookmarked)}>
+                <TouchableOpacity onPress={handleBookmark}>
                     <FontAwesome
                         name={bookmarked ? "bookmark" : "bookmark-o"}
                         size={24}
@@ -99,13 +118,12 @@ export default function Post({ post }) {
                     />
                 </TouchableOpacity>
             </View>
-
-            {/* MODAL DE COMENTÁRIOS */}
+            {/* Modal de comentários */}
             <Modal
                 visible={commentModalVisible}
                 animationType="slide"
                 transparent
-                onRequestClose={() => setCommentModalVisible(false)}
+                onRequestClose={closeComments}
             >
                 <View style={styles.overlay}>
                     <View style={styles.modal}>
@@ -115,19 +133,26 @@ export default function Post({ post }) {
                         ) : (
                             <FlatList
                                 data={commentsList}
-                                keyExtractor={(item, idx) => item.id?.toString() || idx.toString()}
+                                keyExtractor={(item, idx) => idx.toString()}
                                 renderItem={({ item }) => (
                                     <View style={styles.commentItem}>
-                                        <Text style={styles.commentText}>{item.text}</Text>
+                                        <Image
+                                            style={styles.profileImage}
+                                            source={{ uri: getCommentUserPhoto(item) }}
+                                        />
+                                        <Text style={styles.commentText}>
+                                            <Text style={{ fontWeight: 'bold' }}>{item.usuario || 'Usuário'}: </Text>
+                                            {item.comentario}
+                                        </Text>
                                     </View>
                                 )}
                                 style={{ maxHeight: 300 }}
-                                ListEmptyComponent={<Text style={{color:'#aaa'}}>Nenhum comentário ainda.</Text>}
+                                ListEmptyComponent={<Text style={{ color: '#aaa' }}>Nenhum comentário ainda.</Text>}
                             />
                         )}
                         <TouchableOpacity
                             style={styles.closeButton}
-                            onPress={() => setCommentModalVisible(false)}
+                            onPress={closeComments}
                         >
                             <Text style={{ color: '#25C0C0', fontWeight: 'bold' }}>Fechar</Text>
                         </TouchableOpacity>
@@ -221,7 +246,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         marginTop: 10,
     },
-     overlay: {
+    overlay: {
         flex: 1,
         backgroundColor: 'rgba(0,0,0,0.4)',
         justifyContent: 'center',
@@ -254,4 +279,3 @@ const styles = StyleSheet.create({
         marginTop: 18,
     },
 });
-

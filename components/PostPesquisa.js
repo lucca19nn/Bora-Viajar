@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     modal: {
-        width: '90%',
+        width: '50%',
         backgroundColor: '#fff',
         borderRadius: 12,
         padding: 16,
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     profileImageComment: {
-        width: 35,
+        width: 25,
         height: 35,
         borderRadius: 15,
         marginRight: 10,

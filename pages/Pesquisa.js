@@ -102,15 +102,16 @@ export default function Pesquisa() {
                             name={item.name}
                             email={item.email}
                             photo={item.photo}
-                            onPress={() => {
+                            onPress={async () => {
                                 setSelectedUser(item);
+                                await fetchPostsByUser(item.id); // Busca os posts do usuário selecionado
                                 setModalVisible(true);
                             }}
                         />
                     </View>
                 )}
             />
-           <Modal
+            <Modal
                 visible={modalVisible}
                 transparent={true}
                 animationType="slide"
@@ -128,17 +129,12 @@ export default function Pesquisa() {
                                 <Text style={styles.subtitleModal}>Cidade: {selectedUser.city}</Text>
                                 <Text style={styles.subtitleModal}>Tipo de Usuário: {selectedUser.type_user}</Text>
                                 <Text style={styles.titleModal}>Posts:</Text>
-                                <FlatList
-                                    style={styles.verticalList}
-                                    data={posts}
-                                    showsVerticalScrollIndicator={true}
-                                    keyExtractor={(item) => item.id?.toString()}
-                                    renderItem={({ item }) => (
-                                        <View style={[{ width: cardWidth }]}>
-                                            <PostPesquisa post={item} />
-                                        </View>
-                                    )}
-                                    ListEmptyComponent={loading ? <View /> : <View><Text>Nenhum post encontrado</Text></View>}
+                                <PostPesquisa
+                                    posts={posts}
+                                    loading={loading}
+                                    fetchPostsByUser={fetchPostsByUser}
+                                    userId={selectedUser.id}
+                                    onClose={closeModal}
                                 />
                             </>
                         )}

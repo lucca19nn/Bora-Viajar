@@ -17,14 +17,14 @@ export default function Post({ post }) {
         ? `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${post.foto}`
         : 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
 
-        const getCommentUserPhoto = (item) => {
-            if (item?.foto_comentario) {
-                return `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.foto_comentario}`;
-                
-            }
-            return 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
-        };
-        
+    const getCommentUserPhoto = (item) => {
+        if (item?.foto_comentario) {
+            return `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.foto_comentario}`;
+
+        }
+        return 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
+    };
+
     const userName = post?.usuario || 'Usuário';
     const userHandle = post?.user?.username ? `@${post.user.username}` : '@username';
 
@@ -90,10 +90,25 @@ export default function Post({ post }) {
                 {post?.description || "Sem descrição disponível"}
             </Text>
             {post?.tag && (
-                <TouchableOpacity style={styles.alertButton}>
-                    <Text style={styles.alertButtonText}>{post.tag}</Text>
+                <TouchableOpacity
+                    style={[
+                        styles.alertButton,
+                        post.tag === 'ALERTA' && { backgroundColor: '#f8d7da' },   // vermelho claro
+                        post.tag === 'NOVIDADES' && { backgroundColor: '#fff3cd' }, // amarelo claro
+                        post.tag === 'PROMOÇÃO' && { backgroundColor: '#d4edda' }, // verde claro
+                    ]}
+                >
+                    <Text style={[
+                        styles.alertButtonText,
+                        post.tag === 'ALERTA' && { color: '#721c24' },
+                        post.tag === 'NOVIDADES' && { color: '#856404' },
+                        post.tag === 'PROMOÇÃO' && { color: '#155724' },
+                    ]}>
+                        {post.tag}
+                    </Text>
                 </TouchableOpacity>
             )}
+
             {post?.image && (
                 <View style={styles.imagesContainer}>
                     <Image style={styles.postImage} source={{ uri: post.image }} />
@@ -133,21 +148,21 @@ export default function Post({ post }) {
                             <Text>Carregando comentários...</Text>
                         ) : (
                             <FlatList
-                            data={commentsList}
-                            keyExtractor={(item, idx) => idx.toString()}
-                            renderItem={({ item }) => (
-                                <View style={styles.commentItem}>
-                                    <View style={styles.userComment}>
-                                        <Image
-                                            style={styles.profileImageComment}
-                                            source={{ uri: getCommentUserPhoto(item) }}
-                                        />
-                                        <Text style={{ fontWeight: 'bold' }}>{item.usuario || 'Usuário'} </Text>
+                                data={commentsList}
+                                keyExtractor={(item, idx) => idx.toString()}
+                                renderItem={({ item }) => (
+                                    <View style={styles.commentItem}>
+                                        <View style={styles.userComment}>
+                                            <Image
+                                                style={styles.profileImageComment}
+                                                source={{ uri: getCommentUserPhoto(item) }}
+                                            />
+                                            <Text style={{ fontWeight: 'bold' }}>{item.usuario || 'Usuário'} </Text>
+                                        </View>
+                                        <Text style={styles.commentText}> {item.comentario} </Text>
                                     </View>
-                                    <Text style={styles.commentText}> {item.comentario} </Text>
-                                </View>
-                            )}
-                        
+                                )}
+
                                 style={{ maxHeight: 300 }}
                                 ListEmptyComponent={<Text style={{ color: '#aaa' }}>Nenhum comentário ainda.</Text>}
                             />

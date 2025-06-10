@@ -95,14 +95,14 @@ export default function Post({ post }) {
                         styles.alertButton,
                         post.tag === 'ALERTA' && { backgroundColor: '#f8d7da' },   // vermelho claro
                         post.tag === 'NOVIDADES' && { backgroundColor: '#fff3cd' }, // amarelo claro
-                        post.tag === 'PROMOÇÃO' && { backgroundColor: '#d4edda' }, // verde claro
+                        (post.tag === 'PROMOÇÃO' || post.tag === 'PROMO€ÇO') && { backgroundColor: '#d4edda' }, // verde claro
                     ]}
                 >
                     <Text style={[
                         styles.alertButtonText,
                         post.tag === 'ALERTA' && { color: '#721c24' },
                         post.tag === 'NOVIDADES' && { color: '#856404' },
-                        post.tag === 'PROMOÇÃO' && { color: '#155724' },
+                        (post.tag === 'PROMOÇÃO' || post.tag === 'PROMO€ÇO') && { color: '#155724' },
                     ]}>
                         {post.tag}
                     </Text>

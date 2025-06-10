@@ -1,84 +1,68 @@
-import react, { useState, useEffect } from "react";
-import { View, SafeAreaView, FlatList, Dimensions, TextInput, Modal, Text, TouchableOpacity, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, SafeAreaView, FlatList, Dimensions, TextInput, Modal, Text, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import Users from "../components/Users";
 import PostPesquisa from "../components/PostPesquisa";
-import axios from "axios";
 
 const { width } = Dimensions.get("window");
 const cardWidth = width - 40;
 
 export default function Pesquisa() {
     const [usuarios, setUsuarios] = useState([]);
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
-
+    const [posts, setPosts] = useState([]);
+    const [loadingPosts, setLoadingPosts] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = `${process.env.EXPO_PUBLIC_API_URL}/users`;
+                let url = `${process.env.EXPO_PUBLIC_API_URL}/users`;
                 if (search) {
                     url += `?name=${encodeURIComponent(search)}`;
                 }
-                const response = await axios.get(url, {
+                const response = await fetch(url, {
                     headers: {
                         "x-api-key": process.env.EXPO_PUBLIC_API_KEY
                     }
                 });
-                setUsuarios(response.data);
+                const data = await response.json();
+                setUsuarios(data);
             } catch (error) {
-                console.error("Erro ao buscar dados:", error);
-            } finally {
-                setLoading(false);
+                console.error("Erro ao buscar usuários:", error);
             }
         };
 
         fetchData();
     }, [search]);
 
-    const fetchPostsByUser = async (userId) => {
+    const openModalWithUser = async (user) => {
+        setSelectedUser(user);
+        setModalVisible(true);
+        setLoadingPosts(true);
         try {
-            setLoading(true);
-            const postsUrl = `${process.env.EXPO_PUBLIC_API_URL}/posts/${userId}`;
-            const response = await fetch(postsUrl, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': process.env.EXPO_PUBLIC_API_KEY,
-                },
-            });
+            const response = await fetch(
+                `${process.env.EXPO_PUBLIC_API_URL}/posts?user_id=${user.id}`,
+                {
+                    headers: {
+                        "x-api-key": process.env.EXPO_PUBLIC_API_KEY,
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
             const data = await response.json();
             setPosts(data);
         } catch (error) {
-            console.error(error);
             setPosts([]);
+            console.error("Erro ao buscar posts:", error);
         } finally {
-            setLoading(false);
+            setLoadingPosts(false);
         }
     };
 
-    const renderItem = ({ item }) => (
-        <View style={{ width, alignItems: "center" }}>
-            <View style={styles.imageContainer}>
-                <Image
-                    source={{ uri: `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.photo}` }}
-                    style={styles.headerImage}
-                />
-                <View style={styles.textOverlay}>
-                    <Text style={styles.titleImage}>{item.name}</Text>
-                    <Text style={styles.subtitle}>
-                        {item.email ? `${item.name} - ${item.email}` : ""}
-                    </Text>
-                </View>
-            </View>
-        </View>
-    );
-
     const closeModal = () => {
         setModalVisible(false);
+        setSelectedUser(null);
         setPosts([]);
     };
 
@@ -95,18 +79,14 @@ export default function Pesquisa() {
                 data={usuarios}
                 vertical
                 showsVerticalScrollIndicator={true}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <View style={[{ width: cardWidth }]}>
+                    <View style={{ width: cardWidth }}>
                         <Users
                             name={item.name}
                             email={item.email}
                             photo={item.photo}
-                            onPress={async () => {
-                                setSelectedUser(item);
-                                await fetchPostsByUser(item.id); // Busca os posts do usuário selecionado
-                                setModalVisible(true);
-                            }}
+                            onPress={() => openModalWithUser(item)}
                         />
                     </View>
                 )}
@@ -122,20 +102,23 @@ export default function Pesquisa() {
                         {selectedUser && (
                             <>
                                 <Image
-                                    source={{ uri: `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${selectedUser.photo}` }} style={styles.imageModal}
+                                    source={{ uri: `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${selectedUser.photo}` }}
+                                    style={styles.imageModal}
                                 />
                                 <Text style={styles.titleModal}>{selectedUser.name}</Text>
                                 <Text style={styles.subtitleModal}>Estado: {selectedUser.state}</Text>
                                 <Text style={styles.subtitleModal}>Cidade: {selectedUser.city}</Text>
-                                <Text style={styles.subtitleModal}>Tipo de Usuário: {selectedUser.type_user}</Text>
                                 <Text style={styles.titleModal}>Posts:</Text>
-                                <PostPesquisa
-                                    posts={posts}
-                                    loading={loading}
-                                    fetchPostsByUser={fetchPostsByUser}
-                                    userId={selectedUser.id}
-                                    onClose={closeModal}
-                                />
+                                {loadingPosts ? (
+                                    <ActivityIndicator size="large" color="#25c0c0" />
+                                ) : (
+                                    <PostPesquisa
+                                        posts={posts}
+                                        loading={loadingPosts}
+                                        userId={selectedUser.id}
+                                        onClose={closeModal}
+                                    />
+                                )}
                             </>
                         )}
                         <TouchableOpacity
@@ -205,5 +188,9 @@ const styles = {
         textAlign: "center",
         width: "100%",
         marginTop: 20,
+    },
+     verticalList: {
+        width: "100%",
+        paddingHorizontal: 10,
     },
 };

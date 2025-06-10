@@ -124,7 +124,7 @@ export default function Post({ post }) {
                         ) : (
                             <FlatList
                             data={commentsList}
-                            keyExtractor={(item, idx) => idx.toString()}
+                            keyExtractor={(item) => item.id?.toString()}
                             renderItem={({ item }) => (
                                 <View style={styles.commentItem}>
                                     <View style={styles.userComment}>
@@ -158,7 +158,7 @@ export default function Post({ post }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: width * 0.95,
+        width: width * 0.70,
         backgroundColor: '#fff',
         borderRadius: 12,
         padding: 15,

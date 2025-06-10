@@ -13,6 +13,9 @@ export default function Pesquisa() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [posts, setPosts] = useState([]);
     const [loadingPosts, setLoadingPosts] = useState(false);
+        const [isFollowing, setIsFollowing] = useState(false);
+
+        const handleFollow = () => setIsFollowing((prev) => !prev);
 
     // BUSCA USUÁRIOS
     useEffect(() => {
@@ -111,6 +114,17 @@ export default function Pesquisa() {
                                 <Text style={styles.titleModal}>{selectedUser.name}</Text>
                                 <Text style={styles.subtitleModal}>Estado: {selectedUser.state}</Text>
                                 <Text style={styles.subtitleModal}>Cidade: {selectedUser.city}</Text>
+                                                <TouchableOpacity
+                                                    style={[
+                                                        styles.followButton,
+                                                        { backgroundColor: isFollowing ? '#1b9999' : '#25C0C0' }
+                                                    ]}
+                                                    onPress={handleFollow}
+                                                >
+                                                    <Text style={styles.followButtonText}>
+                                                        {isFollowing ? 'Seguindo' : 'Seguir'}
+                                                    </Text>
+                                                </TouchableOpacity>
                                 {loadingPosts ? (
                                     <ActivityIndicator size="large" color="#25c0c0" />
                                 ) : (
@@ -195,5 +209,16 @@ const styles = {
     verticalList: {
         width: "100%",
         paddingHorizontal: 10,
+    },
+    followButton: {
+        paddingVertical: 6,
+        paddingHorizontal: 18,
+        borderRadius: 14,
+        margin: 5,
+    },
+    followButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 14,
     },
 };

@@ -14,6 +14,7 @@ export default function Pesquisa() {
     const [posts, setPosts] = useState([]);
     const [loadingPosts, setLoadingPosts] = useState(false);
 
+    // BUSCA USUÁRIOS
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -36,6 +37,7 @@ export default function Pesquisa() {
         fetchData();
     }, [search]);
 
+    // ABRE MODAL E BUSCA POSTS
     const openModalWithUser = async (user) => {
         setSelectedUser(user);
         setModalVisible(true);
@@ -60,6 +62,7 @@ export default function Pesquisa() {
         }
     };
 
+    // FECHA MODAL
     const closeModal = () => {
         setModalVisible(false);
         setSelectedUser(null);
@@ -189,7 +192,7 @@ const styles = {
         width: "100%",
         marginTop: 20,
     },
-     verticalList: {
+    verticalList: {
         width: "100%",
         paddingHorizontal: 10,
     },

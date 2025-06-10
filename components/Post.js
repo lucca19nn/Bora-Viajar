@@ -9,6 +9,8 @@ export default function Post({ post }) {
     const [liked, setLiked] = useState(false);
     const [bookmarked, setBookmarked] = useState(false);
 
+    const [likesCount, setLikesCount] = useState(post.likes_count ?? 0);
+
     const [commentModalVisible, setCommentModalVisible] = useState(false);
     const [commentsList, setCommentsList] = useState([]);
     const [loadingComments, setLoadingComments] = useState(false);
@@ -28,7 +30,13 @@ export default function Post({ post }) {
     const userName = post?.usuario || 'Usuário';
 
     const handleFollow = () => setIsFollowing((prev) => !prev);
-    const handleLike = () => setLiked((prev) => !prev);
+    const handleLike = () => {
+        setLiked((prev) => {
+            const newLiked = !prev;
+            setLikesCount((count) => newLiked ? count + 1 : count - 1);
+            return newLiked;
+        });
+    };
     const handleBookmark = () => setBookmarked((prev) => !prev);
 
     const openComments = async () => {
@@ -116,17 +124,19 @@ export default function Post({ post }) {
             )}
             {/* Ícones */}
             <View style={styles.iconContainer}>
-                <TouchableOpacity onPress={handleLike}>
+                <TouchableOpacity onPress={handleLike} style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <FontAwesome
                         name={liked ? "heart" : "heart-o"}
                         size={24}
                         color={liked ? "red" : "black"}
                     />
+                    <Text style={{ marginLeft: 6, fontSize: 15 }}>
+                        {likesCount}
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={openComments}>
                     <FontAwesome name="comment-o" size={24} color="black" />
                 </TouchableOpacity>
-                <FontAwesome name="share" size={24} color="black" />
                 <TouchableOpacity onPress={handleBookmark}>
                     <FontAwesome
                         name={bookmarked ? "bookmark" : "bookmark-o"}

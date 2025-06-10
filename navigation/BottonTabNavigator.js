@@ -2,7 +2,6 @@ import React from "react";
 import { Image, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Mapa from "../pages/Mapa";
 import Home from "../pages/Home";
 import Pesquisa from "../pages/Pesquisa";
 import Filtro from "../pages/Filtro";
@@ -108,16 +107,6 @@ export default function TabNavigation() {
                     tabBarIcon: ({ color, size }) => (
                         <Icon name="location-sharp" color={color} size={size} />
                     ),
-                }}
-            />
-            <Tab.Screen 
-                name="Mapa" 
-                component={Mapa} 
-                options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <Icon name="navigate" color={color} size={size} />
-                    ),
-                    headerShown: true,
                 }}
             />
         </Tab.Navigator>

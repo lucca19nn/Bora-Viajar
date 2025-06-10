@@ -20,13 +20,21 @@ function PostItem({ item }) {
         });
     };
 
+    const getCommentUserPhoto = (item) => {
+        if (item?.foto_comentario) {
+            return `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${item.foto_comentario}`;
+
+        }
+        return 'https://cdn-icons-png.flaticon.com/512/17/17004.png';
+    };
+
     const handleBookmark = () => setBookmarked((prev) => !prev);
 
     const openComments = async () => {
         setCommentModalVisible(true);
         setLoadingComments(true);
 
-        const postId = post.id;
+        const postId = item.id;
 
         if (!postId) {
             setCommentsList([]);
@@ -132,7 +140,6 @@ function PostItem({ item }) {
                                         <Text style={styles.commentText}> {item.comentario} </Text>
                                     </View>
                                 )}
-
                                 style={{ maxHeight: 300 }}
                                 ListEmptyComponent={<Text style={{ color: '#aaa' }}>Nenhum comentário ainda.</Text>}
                             />

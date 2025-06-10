@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import Inicial from "./pages/Inicial";
@@ -16,6 +17,15 @@ import Sobre from "./pages/Sobre";
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null; 
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>

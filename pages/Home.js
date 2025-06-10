@@ -10,6 +10,17 @@ export default function Home() {
     const screenWidth = Dimensions.get("window").width;
     const cardWidth = screenWidth / 2;
 
+    // Remove duplicados pelo id antes de exibir
+    const getUniquePosts = (postsArray) => {
+        const seen = new Set();
+        return postsArray.filter(post => {
+            if (!post.id) return true; // mantém posts sem id
+            if (seen.has(post.id)) return false;
+            seen.add(post.id);
+            return true;
+        });
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -27,7 +38,7 @@ export default function Home() {
                         }
                     );
                     const tagData = await tagRes.json();
-                    
+
                     const descriptionRes = await fetch(
                         `${process.env.EXPO_PUBLIC_API_URL}/posts?description=${encodeURIComponent(search)}`,
                         {
@@ -39,12 +50,7 @@ export default function Home() {
                         }
                     );
                     const descData = await descriptionRes.json();
-                    const ids = new Set();
-                    results = [...tagData, ...descData].filter(post => {
-                        if (ids.has(post.id)) return false;
-                        ids.add(post.id);
-                        return true;
-                    });
+                    results = [...tagData, ...descData];
                 } else {
                     const allRes = await fetch(
                         `${process.env.EXPO_PUBLIC_API_URL}/posts`,
@@ -69,6 +75,9 @@ export default function Home() {
         fetchData();
     }, [search]);
 
+    // Só exibe posts únicos
+    const uniquePosts = getUniquePosts(posts);
+
     return (
         <SafeAreaView style={styles.container}>
             <TextInput
@@ -79,9 +88,13 @@ export default function Home() {
             />
             <FlatList
                 style={styles.verticalList}
-                data={posts}
+                data={uniquePosts}
                 showsVerticalScrollIndicator={true}
-                keyExtractor={(item) => item.id?.toString()}
+                keyExtractor={(item, idx) =>
+                    item.id
+                        ? `post-${item.id}-${idx}`
+                        : (item._id ? `post-${item._id}-${idx}` : `post-${idx}`)
+                }
                 renderItem={({ item }) => (
                     <View style={[{ width: cardWidth }]}>
                         <Post post={item} />
@@ -109,4 +122,4 @@ const styles = {
         fontSize: 16,
         backgroundColor: "#ffffff",
     },
-};
+};                              

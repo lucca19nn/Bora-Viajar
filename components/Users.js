@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from "react-native";
 const { width } = Dimensions.get('window');
 
-export default function Users ({ name, email, photo, onPress }) {
+export default function Users({ name, email, photo, onPress }) {
     const [isFollowing, setIsFollowing] = useState(false);
     let imageSource;
     if (photo) {
         imageSource = { uri: `http://10.88.200.160:3000/uploads/${photo}` };
     } else {
-        imageSource = require("../assets/userProfile.jpg"); 
+        imageSource = require("../assets/userProfile.jpg");
     }
 
     const handleFollow = () => setIsFollowing((prev) => !prev);
@@ -16,23 +16,23 @@ export default function Users ({ name, email, photo, onPress }) {
     return (
         <TouchableOpacity style={styles.card} onPress={onPress}>
             <Image
-                source={ imageSource }
+                source={imageSource}
                 style={styles.image}
             />
             <View style={styles.textContainer}>
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.subtitle}>{email}</Text>
                 <TouchableOpacity
-                                    style={[
-                                        styles.followButton,
-                                        { backgroundColor: isFollowing ? '#1b9999' : '#25C0C0' }
-                                    ]}
-                                    onPress={handleFollow}
-                                >
-                                    <Text style={styles.followButtonText}>
-                                        {isFollowing ? 'Seguindo' : 'Seguir'}
-                                    </Text>
-                                </TouchableOpacity>
+                    style={[
+                        styles.followButton,
+                        { backgroundColor: isFollowing ? '#1b9999' : '#25C0C0' }
+                    ]}
+                    onPress={handleFollow}
+                >
+                    <Text style={styles.followButtonText}>
+                        {isFollowing ? 'Seguindo' : 'Seguir'}
+                    </Text>
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );

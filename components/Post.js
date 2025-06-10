@@ -236,7 +236,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     alertButton: {
-        backgroundColor: '#FF0000',
         borderRadius: 8,
         paddingVertical: 5,
         paddingHorizontal: 15,
@@ -244,7 +243,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     alertButtonText: {
-        color: '#fff',
         fontWeight: 'bold',
         fontSize: 14,
     },

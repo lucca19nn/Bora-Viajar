@@ -111,7 +111,6 @@ export default function Pesquisa() {
                                 <Text style={styles.titleModal}>{selectedUser.name}</Text>
                                 <Text style={styles.subtitleModal}>Estado: {selectedUser.state}</Text>
                                 <Text style={styles.subtitleModal}>Cidade: {selectedUser.city}</Text>
-                                <Text style={styles.titleModal}>Posts:</Text>
                                 {loadingPosts ? (
                                     <ActivityIndicator size="large" color="#25c0c0" />
                                 ) : (
@@ -160,7 +159,8 @@ const styles = {
         alignItems: "center"
     },
     modalContent: {
-        width: "80%",
+        width: "90%",
+        maxHeight: "90%", 
         backgroundColor: "#ffffff",
         borderRadius: 10,
         padding: 20,

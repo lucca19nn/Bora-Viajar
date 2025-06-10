@@ -26,7 +26,6 @@ export default function Post({ post }) {
     };
 
     const userName = post?.usuario || 'Usuário';
-    const userHandle = post?.user?.username ? `@${post.user.username}` : '@username';
 
     const handleFollow = () => setIsFollowing((prev) => !prev);
     const handleLike = () => setLiked((prev) => !prev);
@@ -71,7 +70,6 @@ export default function Post({ post }) {
                 <Image style={styles.profileImage} source={{ uri: userPhoto }} />
                 <View style={styles.userDetails}>
                     <Text style={styles.userName}>{userName}</Text>
-                    <Text style={styles.userHandle}>{userHandle}</Text>
                 </View>
                 <TouchableOpacity
                     style={[
@@ -85,10 +83,6 @@ export default function Post({ post }) {
                     </Text>
                 </TouchableOpacity>
             </View>
-            {/* Conteúdo do post */}
-            <Text style={styles.postContent}>
-                {post?.description || "Sem descrição disponível"}
-            </Text>
             {post?.tag && (
                 <TouchableOpacity
                     style={[
@@ -108,10 +102,16 @@ export default function Post({ post }) {
                     </Text>
                 </TouchableOpacity>
             )}
-
+            {/* Conteúdo do post */}
+            <Text style={styles.postContent}>
+                {post?.description || "Sem descrição disponível"}
+            </Text>
             {post?.image && (
                 <View style={styles.imagesContainer}>
-                    <Image style={styles.postImage} source={{ uri: post.image }} />
+                    <Image
+                        style={styles.postImage}
+                        source={{ uri: `${process.env.EXPO_PUBLIC_API_URL_UPLOAD}/${post.image}` }}
+                    />
                 </View>
             )}
             {/* Ícones */}

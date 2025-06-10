@@ -1,14 +1,17 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from "react-native";
+const { width } = Dimensions.get('window');
 
 export default function Users ({ name, email, photo, onPress }) {
-
+    const [isFollowing, setIsFollowing] = useState(false);
     let imageSource;
     if (photo) {
         imageSource = { uri: `http://10.88.200.160:3000/uploads/${photo}` };
     } else {
         imageSource = require("../assets/userProfile.jpg"); 
     }
+
+    const handleFollow = () => setIsFollowing((prev) => !prev);
 
     return (
         <TouchableOpacity style={styles.card} onPress={onPress}>
@@ -19,6 +22,17 @@ export default function Users ({ name, email, photo, onPress }) {
             <View style={styles.textContainer}>
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.subtitle}>{email}</Text>
+                <TouchableOpacity
+                                    style={[
+                                        styles.followButton,
+                                        { backgroundColor: isFollowing ? '#1b9999' : '#25C0C0' }
+                                    ]}
+                                    onPress={handleFollow}
+                                >
+                                    <Text style={styles.followButtonText}>
+                                        {isFollowing ? 'Seguindo' : 'Seguir'}
+                                    </Text>
+                                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
@@ -26,10 +40,11 @@ export default function Users ({ name, email, photo, onPress }) {
 
 const styles = StyleSheet.create({
     card: {
+        flex: 1,
+        width: 370,
         flexDirection: "row",
         alignItems: "center",
-        width: 370,
-        height: 100,
+        height: 120,
         backgroundColor: "#ffffff",
         borderRadius: 10,
         marginVertical: 8,
@@ -49,14 +64,28 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "bold",
         color: "#000000",
         textAlign: "left",
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: 14,
         color: "#000000",
         textAlign: "left",
+    },
+    followButton: {
+        position: 'absolute',
+        right: 0,
+        bottom: 40,
+        zIndex: 2,
+        paddingVertical: 6,
+        paddingHorizontal: 18,
+        borderRadius: 14,
+    },
+    followButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 14,
     },
 });

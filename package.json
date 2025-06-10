@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/poppins": "^0.4.0",
+    "@expo-google-fonts/roboto": "^0.4.0",
     "@expo/metro-runtime": "~5.0.4",
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/bottom-tabs": "^7.3.10",
@@ -17,6 +19,7 @@
     "axios": "^1.9.0",
     "expo": "^53.0.9",
     "expo-constants": "~17.1.6",
+    "expo-font": "^13.3.1",
     "expo-location": "~18.1.5",
     "expo-status-bar": "~2.2.3",
     "leaflet": "^1.9.4",

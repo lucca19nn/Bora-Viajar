@@ -41,7 +41,7 @@ export default function Users({ name, email, photo, onPress }) {
 const styles = StyleSheet.create({
     card: {
         flex: 1,
-        width: 370,
+        width: 355,
         flexDirection: "row",
         alignItems: "center",
         height: 120,

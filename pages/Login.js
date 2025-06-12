@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, Alert } from "react-native";
 
 export default function Login({ navigation }) {
     const [password, setPassword] = React.useState("");
@@ -7,8 +7,12 @@ export default function Login({ navigation }) {
     const handleLogin = () => {
         if (password.length < 6) {
             Alert.alert("Erro", "A senha deve ter no minimo 6 caracteres.");
-        } else {
-            navigation.navigate("Home");
+        } 
+        else if (!password.includes("@") && !password.includes("#") && !password.includes("$") && !password.includes("%") && !password.includes("&")) {
+            Alert.alert("Erro", "Senha deve conter pelo menos um dos seguintes caracteres especiais: @, #, $, %, &.");
+        }
+        else {
+            navigation.navigate("Inicial");
         }
     };
     return (
@@ -35,7 +39,7 @@ export default function Login({ navigation }) {
                     <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
                         <Text style={styles.linkText}>Não tem uma conta? Crie já</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Inicial")}>
+                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
                         <Text style={styles.buttonText}>ENTRAR</Text>
                     </TouchableOpacity>
                 </View>

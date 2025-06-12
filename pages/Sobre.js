@@ -57,7 +57,7 @@ export default function Sobre() {
         {
             id: "7",
             name: "Laura",
-            age: "Eu sou PO (Product Owner), Tech Lead e desenvolvedora Back-End, tenho 17 anos e moro em Valinhos-SP.",
+            age: "Eu sou PO (Product Owner), Tech Líder e desenvolvedora Back-End, tenho 17 anos e moro em Valinhos-SP.",
             image: require("../assets/laura.jpg"),
             link: "https://www.linkedin.com/in/laura-ferreira-violla-a526b12b1/",
             isLocalImage: true,
@@ -91,8 +91,8 @@ export default function Sobre() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f5f5f5", // Cor de fundo da tela
-        paddingHorizontal: 10, // Margem nas laterais
+        backgroundColor: "#f5f5f5", 
+        paddingHorizontal: 10, 
     },
     title: {
         textAlign: "center",
@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     cardContainer: {
-        width: "100%", // Cada card ocupa toda a largura disponível
-        marginBottom: 15, // Espaço entre os cards
+        width: "100%", 
+        marginBottom: 15, 
     },
     verticalList: {
         flexGrow: 1,

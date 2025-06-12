@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function CustomHeader({ title, onBack }) {
     return (
         <View style={styles.header}>
             {onBack ? (
                 <TouchableOpacity onPress={onBack} style={styles.backButton}>
-                    <Text style={styles.backText}>{"<"}</Text>
+                    <Ionicons name="arrow-back" size={30} color="#fff" />
                 </TouchableOpacity>
             ) : (
                 <View style={{ width: 40 }} />
@@ -20,7 +21,7 @@ export default function CustomHeader({ title, onBack }) {
 const styles = StyleSheet.create({
     header: {
         marginBottom: 20,
-        height: 70,
+        height: 90,
         backgroundColor: '#25C0C0',
         flexDirection: 'row',
         alignItems: 'center',
@@ -35,14 +36,12 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 20,
     },
     backButton: {
+        marginTop: 15,
         width: 40,
         alignItems: 'flex-start',
     },
-    backText: {
-        color: '#fff',
-        fontSize: 30,
-    },
     title: {
+        marginTop: 15,
         flex: 1,
         color: '#fff',
         fontSize: 25,

@@ -17,7 +17,7 @@ export default function Inicial({ navigation }) {
                     <Text style={styles.title}>Bem vindo ao Bora!</Text>
                     <Text style={styles.subtitle}>Qual seu próximo destino?</Text>
                     <Text style={styles.description}>
-                        Descubra destinos incríveis, explore experiências únicas e encontre as melhores dicas para sua próxima aventura. No Bora, sua próxima aventura começa aqui.
+                        No Bora, você encontra destinos incríveis, experiências únicas e dicas valiosas para planejar sua próxima aventura.
                     </Text>
                     <Text style={styles.footerText}>
                         Entre agora e deixe o mundo te surpreender!
@@ -64,13 +64,13 @@ const styles = StyleSheet.create({
         marginBottom: 25,
     },
     title: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: "bold",
         color: "white",
         textAlign: "center",
     },
     subtitle: {
-        fontSize: 18,
+        fontSize: 16,
         color: "white",
         marginTop: 5,
         textAlign: "center",
@@ -80,8 +80,7 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 10,
         textAlign: "center",
-        lineHeight: 20,
-        paddingHorizontal: 20,
+        lineHeight: 18,
     },
     button: {
         width: 60,

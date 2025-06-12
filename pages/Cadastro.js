@@ -14,6 +14,10 @@ const Cadastro = () => {
             Alert.alert("Erro", "A senha deve ter no minimo 6 caracteres.");
             return;
         }
+        if (!senha.includes('@') && !senha.includes('#') && !senha.includes('$') && !senha.includes('%') && !senha.includes('&')) {
+            Alert.alert("Erro", "Senha deve conter pelo menos um dos seguintes caracteres especiais: @, #, $, %, &.");
+            return;
+        }
         if (senha !== confirmarSenha) {
             Alert.alert("Erro", "As senhas não coincidem.");
             return;
@@ -22,7 +26,7 @@ const Cadastro = () => {
         console.log('Email:', email);
         console.log('Senha:', senha);
 
-        navigation.navigate('Login');
+        navigation.navigate('Inicial');
     };
 
     return (

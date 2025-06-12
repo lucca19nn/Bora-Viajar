@@ -95,9 +95,9 @@ export default function Post({ post }) {
                 <TouchableOpacity
                     style={[
                         styles.alertButton,
-                        post.tag === 'ALERTA' && { backgroundColor: '#f8d7da' },   // vermelho claro
-                        post.tag === 'NOVIDADES' && { backgroundColor: '#fff3cd' }, // amarelo claro
-                        (post.tag === 'PROMOÇÃO' || post.tag === 'PROMO€ÇO') && { backgroundColor: '#d4edda' }, // verde claro
+                        post.tag === 'ALERTA' && { backgroundColor: '#f8d7da' }, 
+                        post.tag === 'NOVIDADES' && { backgroundColor: '#fff3cd' },
+                        (post.tag === 'PROMOÇÃO' || post.tag === 'PROMO€ÇO') && { backgroundColor: '#d4edda' },
                     ]}
                 >
                     <Text style={[

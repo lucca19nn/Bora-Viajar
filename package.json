@@ -23,6 +23,7 @@
     "expo-location": "~18.1.5",
     "expo-status-bar": "~2.2.3",
     "leaflet": "^1.9.4",
+    "lucide-react": "^0.514.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-leaflet": "^5.0.0",
